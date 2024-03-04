@@ -1,0 +1,46 @@
+<script setup>
+
+// IMPORT
+// ##############
+import SelectLanguageComponent from './SelectLanguageComponent.vue';
+
+</script>
+
+<template>
+    <header class="header flex flex-row">
+        <div class="flex grow justify-center w-full ml-20">
+            <img src="/img/logo.png" alt="Logo" class="logo">
+        </div>
+        <SelectLanguageComponent class="mr-8" />
+    </header>
+</template>
+
+<style scoped>
+.header {
+    z-index: 100;
+    width: 100%;
+    height: var(--header-height);
+    background-color: #0a0a0a;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    /* Ajouté pour aligner le contenu à gauche */
+    /* padding: 0 20px; */
+}
+
+.logo {
+    height: calc(var(--header-height) * .8);
+    width: auto;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 15px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+</style>
