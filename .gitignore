@@ -1,0 +1,52 @@
+################################################################
+# ------------------------------------------------------------ #
+# JavaScript
+# ------------------------------------------------------------ #
+################################################################
+
+# Dépendances
+node_modules/
+
+# Fichiers de log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environnement runtime
+.env
+.env.test
+.env*.local
+
+# Fichiers et dossiers de cache
+.cache/
+dist/
+temp/
+
+# Fichiers de build
+/build/
+# /public/
+
+# Fichiers DS_Store
+.DS_Store
+
+
+################################################################
+# ------------------------------------------------------------ #
+# Autres fichiers et dossiers à ignorer
+# ------------------------------------------------------------ #
+################################################################
+
+*.exe
+*.pem
+*.crx
+*.log
+*.log.*
+*.tar.gz
+*.zip
+*.rar
+*.7z
+*.db
+*.sqlite
+/temp/
+/cache/
+/backups/
