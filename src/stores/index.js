@@ -391,6 +391,7 @@ export const correspondanceStore = defineStore('correspondanceStore', {
                     // Culture
                     { "text": "Культуре", "icon": "/icons/20xCulture5.webp" },
                     { "text": "культуре", "icon": "/icons/20xCulture5.webp" },
+                    { "text": "культуры", "icon": "/icons/20xCulture5.webp" },
                     // Foi
                     { "text": "Вере", "icon": "/icons/20xfaith5.webp" },
                     { "text": "вере", "icon": "/icons/20xfaith5.webp" },

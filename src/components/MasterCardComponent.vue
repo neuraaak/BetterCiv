@@ -54,8 +54,16 @@ const civLeaderEffectWithIcons = computed(() => {
 
     keywordIcons.value.forEach(({ text: keyword, icon }) => {
         const iconPath = icon;
-        const regex = new RegExp(`${keyword}`);
-        text = text.replace(regex, `<span class="keyword-icon translate-y-[0.2rem]" style="display: inline-flex; align-items: center; height: 20px;"><img src="${iconPath}" alt="${keyword}" style="display: inline; height: 16px; vertical-align: middle;">${keyword}</span>`);
+        let regex = null;
+        if (["ru", "jp", "kr", "zh"].includes(store.lang)) {
+            regex = new RegExp(`${keyword}`, 'u');
+        } else {
+            regex = new RegExp(`\\b${keyword}\\b`, '');
+        }
+
+        if (text !== undefined) {
+            text = text.replace(regex, `<span class="keyword-icon translate-y-[0.2rem]" style="display: inline-flex; align-items: center; height: 20px;"><img src="${iconPath}" alt="${keyword}" style="display: inline; height: 16px; vertical-align: middle;">${keyword}</span>`);
+        }
     });
 
     return text;
