@@ -262,71 +262,71 @@ export const correspondanceStore = defineStore('correspondanceStore', {
             {
                 en: [
                     { "text": "Culture", "icon": "/icons/20xCulture5.webp" },
-                    { "text": "culture", "icon": "/icons/20xCulture5.webp" },
+                    // { "text": "culture", "icon": "/icons/20xCulture5.webp" },
                     { "text": "Faith", "icon": "/icons/20xfaith5.webp" },
-                    { "text": "faith", "icon": "/icons/20xfaith5.webp" },
-                    { "text": "science", "icon": "/icons/20xScience5.webp" },
+                    // { "text": "faith", "icon": "/icons/20xfaith5.webp" },
                     { "text": "Science", "icon": "/icons/20xScience5.webp" },
+                    // { "text": "science", "icon": "/icons/20xScience5.webp" },
                     { "text": "Production", "icon": "/icons/20xProduction5.webp" },
-                    { "text": "production", "icon": "/icons/20xProduction5.webp" },
+                    // { "text": "production", "icon": "/icons/20xProduction5.webp" },
                     { "text": "Gold", "icon": "/icons/20xGold5.webp" },
-                    { "text": "gold", "icon": "/icons/20xGold5.webp" },
+                    // { "text": "gold", "icon": "/icons/20xGold5.webp" },
                 ]
             },
             {
                 de: [
                     { "text": "Kultur", "icon": "/icons/20xCulture5.webp" },
-                    { "text": "kultur", "icon": "/icons/20xCulture5.webp" },
+                    // { "text": "kultur", "icon": "/icons/20xCulture5.webp" },
                     { "text": "Glaube", "icon": "/icons/20xfaith5.webp" },
-                    { "text": "glaube", "icon": "/icons/20xfaith5.webp" },
+                    // { "text": "glaube", "icon": "/icons/20xfaith5.webp" },
                     { "text": "Wissenschaft", "icon": "/icons/20xScience5.webp" },
-                    { "text": "wissenschaft", "icon": "/icons/20xScience5.webp" },
+                    // { "text": "wissenschaft", "icon": "/icons/20xScience5.webp" },
                     { "text": "Produktion", "icon": "/icons/20xProduction5.webp" },
-                    { "text": "produktion", "icon": "/icons/20xProduction5.webp" },
+                    // { "text": "produktion", "icon": "/icons/20xProduction5.webp" },
                     { "text": "Gold", "icon": "/icons/20xGold5.webp" },
-                    { "text": "gold", "icon": "/icons/20xGold5.webp" },
+                    // { "text": "gold", "icon": "/icons/20xGold5.webp" },
                 ]
             },
             {
                 es: [
                     { "text": "Cultura", "icon": "/icons/20xCulture5.webp" },
-                    { "text": "cultura", "icon": "/icons/20xScience5.webp" },
+                    // { "text": "cultura", "icon": "/icons/20xScience5.webp" },
                     { "text": "Fe", "icon": "/icons/20xfaith5.webp" },
-                    { "text": "fe", "icon": "/icons/20xfaith5.webp" },
+                    // { "text": "fe", "icon": "/icons/20xfaith5.webp" },
                     { "text": "Ciencia", "icon": "/icons/20xCulture5.webp" },
-                    { "text": "ciencia", "icon": "/icons/20xScience5.webp" },
+                    // { "text": "ciencia", "icon": "/icons/20xScience5.webp" },
                     { "text": "Producción", "icon": "/icons/20xProduction5.webp" },
-                    { "text": "producción", "icon": "/icons/20xProduction5.webp" },
+                    // { "text": "producción", "icon": "/icons/20xProduction5.webp" },
                     { "text": "Oro", "icon": "/icons/20xGold5.webp" },
-                    { "text": "oro", "icon": "/icons/20xGold5.webp" },
+                    // { "text": "oro", "icon": "/icons/20xGold5.webp" },
                 ]
             },
             {
                 fr: [
                     { "text": "Culture", "icon": "/icons/20xCulture5.webp" },
-                    { "text": "culture", "icon": "/icons/20xCulture5.webp" },
+                    // { "text": "culture", "icon": "/icons/20xCulture5.webp" },
                     { "text": "Foi", "icon": "/icons/20xfaith5.webp" },
-                    { "text": "foi", "icon": "/icons/20xfaith5.webp" },
-                    { "text": "science", "icon": "/icons/20xScience5.webp" },
+                    // { "text": "foi", "icon": "/icons/20xfaith5.webp" },
                     { "text": "Science", "icon": "/icons/20xScience5.webp" },
+                    // { "text": "science", "icon": "/icons/20xScience5.webp" },
                     { "text": "Production", "icon": "/icons/20xProduction5.webp" },
-                    { "text": "production", "icon": "/icons/20xProduction5.webp" },
+                    // { "text": "production", "icon": "/icons/20xProduction5.webp" },
                     { "text": "Or", "icon": "/icons/20xGold5.webp" },
-                    { "text": "or", "icon": "/icons/20xGold5.webp" },
+                    // { "text": "or", "icon": "/icons/20xGold5.webp" },
                 ]
             },
             {
                 it: [
                     { "text": "Cultura", "icon": "/icons/20xCulture5.webp" },
-                    { "text": "cultura", "icon": "/icons/20xCulture5.webp" },
+                    // { "text": "cultura", "icon": "/icons/20xCulture5.webp" },
                     { "text": "Fede", "icon": "/icons/20xfaith5.webp" },
-                    { "text": "fede", "icon": "/icons/20xfaith5.webp" },
+                    // { "text": "fede", "icon": "/icons/20xfaith5.webp" },
                     { "text": "Scienza", "icon": "/icons/20xScience5.webp" },
-                    { "text": "scienza", "icon": "/icons/20xScience5.webp" },
+                    // { "text": "scienza", "icon": "/icons/20xScience5.webp" },
                     { "text": "Produzione", "icon": "/icons/20xProduction5.webp" },
-                    { "text": "produzione", "icon": "/icons/20xProduction5.webp" },
+                    // { "text": "produzione", "icon": "/icons/20xProduction5.webp" },
                     { "text": "Oro", "icon": "/icons/20xGold5.webp" },
-                    { "text": "oro", "icon": "/icons/20xGold5.webp" },
+                    // { "text": "oro", "icon": "/icons/20xGold5.webp" },
                 ]
             },
             {
@@ -371,39 +371,39 @@ export const correspondanceStore = defineStore('correspondanceStore', {
                 pl: [
                     // Culture
                     { "text": "Kultury", "icon": "/icons/20xCulture5.webp" },
-                    { "text": "kultury", "icon": "/icons/20xCulture5.webp" },
+                    // { "text": "kultury", "icon": "/icons/20xCulture5.webp" },
                     // Foi
                     { "text": "Wiary", "icon": "/icons/20xfaith5.webp" },
-                    { "text": "wiary", "icon": "/icons/20xfaith5.webp" },
+                    // { "text": "wiary", "icon": "/icons/20xfaith5.webp" },
                     // Science
                     { "text": "Nauki", "icon": "/icons/20xScience5.webp" },
-                    { "text": "nauki", "icon": "/icons/20xScience5.webp" },
+                    // { "text": "nauki", "icon": "/icons/20xScience5.webp" },
                     // Production
                     { "text": "Produkcji", "icon": "/icons/20xProduction5.webp" },
-                    { "text": "produkcji", "icon": "/icons/20xProduction5.webp" },
+                    // { "text": "produkcji", "icon": "/icons/20xProduction5.webp" },
                     // Commerce
                     { "text": "Złota", "icon": "/icons/20xGold5.webp" },
-                    { "text": "złota", "icon": "/icons/20xGold5.webp" },
+                    // { "text": "złota", "icon": "/icons/20xGold5.webp" },
                 ]
             },
             {
                 ru: [
                     // Culture
                     { "text": "Культуре", "icon": "/icons/20xCulture5.webp" },
-                    { "text": "культуре", "icon": "/icons/20xCulture5.webp" },
+                    // { "text": "культуре", "icon": "/icons/20xCulture5.webp" },
                     { "text": "культуры", "icon": "/icons/20xCulture5.webp" },
                     // Foi
                     { "text": "Вере", "icon": "/icons/20xfaith5.webp" },
-                    { "text": "вере", "icon": "/icons/20xfaith5.webp" },
+                    // { "text": "вере", "icon": "/icons/20xfaith5.webp" },
                     // Science
                     { "text": "Науке", "icon": "/icons/20xScience5.webp" },
-                    { "text": "науке", "icon": "/icons/20xScience5.webp" },
+                    // { "text": "науке", "icon": "/icons/20xScience5.webp" },
                     // Production
                     { "text": "Производству", "icon": "/icons/20xProduction5.webp" },
-                    { "text": "производству", "icon": "/icons/20xProduction5.webp" },
+                    // { "text": "производству", "icon": "/icons/20xProduction5.webp" },
                     // Commerce
                     { "text": "Золото", "icon": "/icons/20xGold5.webp" },
-                    { "text": "золото", "icon": "/icons/20xGold5.webp" },
+                    // { "text": "золото", "icon": "/icons/20xGold5.webp" },
                 ]
             },
             {

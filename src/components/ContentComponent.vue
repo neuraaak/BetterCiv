@@ -7,6 +7,7 @@ import { correspondanceStore } from '../stores/index';
 import CivCardComponent from './CivCardComponent.vue';
 import MasterCardComponent from './MasterCardComponent.vue';
 import SelectInputComponent from './SelectInputComponent.vue';
+import SearchInputComponent from './SearchInputComponent.vue';
 
 // VARIABLES
 // ##############
@@ -18,11 +19,14 @@ const store = correspondanceStore();
 //
 const tagList = store.getTagList;
 const tierList = store.getTierList;
+//
 const selectedTags = ref([]);
 const selectedTiers = ref([]);
 //
 const selectedState = ref(false);
 const selectedCard = ref(null);
+//
+const searchedText = ref('');
 
 // COMPUTED
 const filteredCivilisations = computed(() => {
@@ -35,7 +39,18 @@ const filteredCivilisations = computed(() => {
         // Vérifie si les tiers matchent (ou si aucun tier n'est sélectionné)
         let tiersMatch = !selectedTiers.value.length || selectedTiers.value.some(selectedTier => selectedTier.id === civ.tier_id);
 
-        return tagsMatch && tiersMatch;
+        // Vérifie si le texte de recherche match
+        let regex = null;
+        if (["ru", "jp", "kr", "zh"].includes(store.lang)) {
+            regex = new RegExp(`${searchedText.value}`, 'ui');
+        } else {
+            regex = new RegExp(`${searchedText.value}`, 'gi');
+        }
+
+        let searchMatch = !searchedText.value.length || regex.test(civ.leader.trait.effect);
+        console.log(searchMatch);
+
+        return tagsMatch && tiersMatch && searchMatch;
     });
 });
 
@@ -70,6 +85,10 @@ function handleCheckedTags(CheckedTags) {
 
 function handleCheckedTiers(CheckedTiers) {
     selectedTiers.value = CheckedTiers;
+};
+
+function handleSearchedText(SearchedText) {
+    searchedText.value = SearchedText;
 };
 
 function closeOverlay() {
@@ -117,18 +136,14 @@ function navigateCards(event) {
             <SelectInputComponent multiple v-model="selectedTiers" @update:selectedOptions="handleCheckedTiers"
                 :options="tierList" label="name" class="md:w-20rem flex flex-row" getPropertyFunc="getTierPropertyById">
             </SelectInputComponent>
+            <SearchInputComponent v-model="searchedText" @update:selectedOptions="handleSearchedText">
+            </SearchInputComponent>
         </div>
 
         <div class="grid-container mt-8 mb-24">
-            <CivCardComponent v-for="civ in filteredCivilisations"
-                :key="civ?.id"
-                :id="civ?.id"
-                :name="civ?.name"
-                :desc="civ?.historical_info[0].text"
-                :tags_id="civ?.tags_id"
-                :tier_id="civ?.tier_id"
-                :civ_leader_effect="civ?.leader.trait.effect"
-            />
+            <CivCardComponent v-for="civ in filteredCivilisations" :key="civ?.id" :id="civ?.id" :name="civ?.name"
+                :desc="civ?.historical_info[0].text" :tags_id="civ?.tags_id" :tier_id="civ?.tier_id"
+                :civ_leader_effect="civ?.leader.trait.effect" />
         </div>
     </div>
 </template>

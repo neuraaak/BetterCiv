@@ -33,8 +33,8 @@ function updateLanguage() {
 </script>
 
 <template>
-    <div class="bg-zinc-800 border-zinc-700 rounded-sm flex items-center w-16">
-        <select v-model="selectedLang" @change="updateLanguage" class="px-2 py-1 rounded-sm">
+    <div class="bg-zinc-200 border-zinc-200 text-zinc-800 rounded-sm flex items-center w-16">
+        <select v-model="selectedLang" @change="updateLanguage" class="px-2 py-1 rounded-sm bg-zinc-200 border-zinc-200 text-zinc-800">
             <option v-for="option in options" :key="option.value" :value="option.lang">
                 {{ option.value }}
             </option>

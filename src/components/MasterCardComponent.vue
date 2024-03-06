@@ -56,9 +56,9 @@ const civLeaderEffectWithIcons = computed(() => {
         const iconPath = icon;
         let regex = null;
         if (["ru", "jp", "kr", "zh"].includes(store.lang)) {
-            regex = new RegExp(`${keyword}`, 'u');
+            regex = new RegExp(`${keyword}`, 'ui');
         } else {
-            regex = new RegExp(`\\b${keyword}\\b`, '');
+            regex = new RegExp(`\\b${keyword}\\b`, 'gi');
         }
 
         if (text !== undefined) {
