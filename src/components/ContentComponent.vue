@@ -31,6 +31,7 @@ const searchedText = ref('');
 // COMPUTED
 const filteredCivilisations = computed(() => {
     return props.civilisations.filter(civ => {
+    
         // Vérifie si les tags matchent (ou si aucun tag n'est sélectionné)
         let tagsMatch = !selectedTags.value.length || civ.tags_id.some(tag =>
             selectedTags.value.some(selectedTag => selectedTag.id === tag)
@@ -47,8 +48,7 @@ const filteredCivilisations = computed(() => {
             regex = new RegExp(`${searchedText.value}`, 'gi');
         }
 
-        let searchMatch = !searchedText.value.length || regex.test(civ.leader.trait.effect);
-        console.log(searchMatch);
+        let searchMatch = !searchedText.value.length || regex.test(civ.leader.trait.effect) || regex.test(civ.name);
 
         return tagsMatch && tiersMatch && searchMatch;
     });
