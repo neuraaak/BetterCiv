@@ -1,13 +1,51 @@
+<template>
+    <div class="content-overlay w-full fixed flex flex-row justify-center items-center bg-zinc-950/70 backdrop-blur-md backdrop-brightness-80 shadow-xl"
+        :class="!selectedState ? 'hidden' : ''" @click="closeOverlay">
+        <div id="master-card" class="w-[485px] h-[710px] mx-1" @click.stop>
+            <MasterCardComponent :key="filteredCivilisations[selectedCardIndex]?.id"
+                :id="filteredCivilisations[selectedCardIndex]?.id"
+                :name="filteredCivilisations[selectedCardIndex]?.name"
+                :civ_icon="filteredCivilisations[selectedCardIndex]?.icon"
+                :desc="filteredCivilisations[selectedCardIndex]?.historical_info[0]?.text"
+                :tags_id="filteredCivilisations[selectedCardIndex]?.tags_id"
+                :tier_id="filteredCivilisations[selectedCardIndex]?.tier_id"
+                :civ_leader="filteredCivilisations[selectedCardIndex]?.leader.name"
+                :civ_leader_icon="filteredCivilisations[selectedCardIndex]?.leader.icon"
+                :civ_leader_effect="filteredCivilisations[selectedCardIndex]?.leader.trait.effect"
+                :civ_units="filteredCivilisations[selectedCardIndex]?.unique_units"
+                :civ_building="filteredCivilisations[selectedCardIndex]?.unique_buildings" />
+        </div>
+    </div>
+    <div class="content relative flex flex-col align-top items-start sm:px-8 md:px-12 lg:px-20">
+        <div class="fixedcontent flex flex-row align-top gap-8 mt-16">
+            <SelectInputComponent multiple v-model="selectedTags" @update:selectedOptions="handleCheckedTags"
+                :options="tagList" label="name" class="md:w-20rem flex flex-row" getPropertyFunc="getTagPropertyById">
+            </SelectInputComponent>
+            <SelectInputComponent multiple v-model="selectedTiers" @update:selectedOptions="handleCheckedTiers"
+                :options="tierList" label="name" class="md:w-20rem flex flex-row" getPropertyFunc="getTierPropertyById">
+            </SelectInputComponent>
+            <SearchInputComponent v-model="searchedText" @update:selectedOptions="handleSearchedText">
+            </SearchInputComponent>
+        </div>
+
+        <div class="grid-container mt-8 mb-24">
+            <CivCardComponent v-for="civ in filteredCivilisations" :key="civ?.id" :id="civ?.id" :name="civ?.name"
+                :desc="civ?.historical_info[0].text" :tags_id="civ?.tags_id" :tier_id="civ?.tier_id"
+                :civ_leader_effect="civ?.leader.trait.effect" />
+        </div>
+    </div>
+</template>
+
 <script setup>
 
 // IMPORT
 // ##############
 import { ref, watch, computed, onMounted, onUnmounted } from 'vue';
-import { correspondanceStore } from '../stores/index';
-import CivCardComponent from './CivCardComponent.vue';
-import MasterCardComponent from './MasterCardComponent.vue';
-import SelectInputComponent from './SelectInputComponent.vue';
-import SearchInputComponent from './SearchInputComponent.vue';
+import { correspondanceStore } from '../../stores/index';
+import CivCardComponent from '../civilisations/CivCardComponent.vue';
+import MasterCardComponent from '../civilisations/MasterCardComponent.vue';
+import SelectInputComponent from '../global/SelectInputComponent.vue';
+import SearchInputComponent from '../global/SearchInputComponent.vue';
 
 // VARIABLES
 // ##############
@@ -31,7 +69,7 @@ const searchedText = ref('');
 // COMPUTED
 const filteredCivilisations = computed(() => {
     return props.civilisations.filter(civ => {
-    
+
         // Vérifie si les tags matchent (ou si aucun tag n'est sélectionné)
         let tagsMatch = !selectedTags.value.length || civ.tags_id.some(tag =>
             selectedTags.value.some(selectedTag => selectedTag.id === tag)
@@ -110,44 +148,6 @@ function navigateCards(event) {
 
 </script>
 
-<template>
-    <div class="content-overlay w-full fixed flex flex-row justify-center items-center bg-zinc-950/70 backdrop-blur-md backdrop-brightness-80 shadow-xl"
-        :class="!selectedState ? 'hidden' : ''" @click="closeOverlay">
-        <div id="master-card" class="w-[485px] h-[710px] mx-1" @click.stop>
-            <MasterCardComponent :key="filteredCivilisations[selectedCardIndex]?.id"
-                :id="filteredCivilisations[selectedCardIndex]?.id"
-                :name="filteredCivilisations[selectedCardIndex]?.name"
-                :civ_icon="filteredCivilisations[selectedCardIndex]?.icon"
-                :desc="filteredCivilisations[selectedCardIndex]?.historical_info[0]?.text"
-                :tags_id="filteredCivilisations[selectedCardIndex]?.tags_id"
-                :tier_id="filteredCivilisations[selectedCardIndex]?.tier_id"
-                :civ_leader="filteredCivilisations[selectedCardIndex]?.leader.name"
-                :civ_leader_icon="filteredCivilisations[selectedCardIndex]?.leader.icon"
-                :civ_leader_effect="filteredCivilisations[selectedCardIndex]?.leader.trait.effect"
-                :civ_units="filteredCivilisations[selectedCardIndex]?.unique_units"
-                :civ_building="filteredCivilisations[selectedCardIndex]?.unique_buildings" />
-        </div>
-    </div>
-    <div class="content relative flex flex-col align-top items-start sm:px-8 md:px-12 lg:px-20">
-        <div class="fixedcontent flex flex-row align-top gap-8 mt-16">
-            <SelectInputComponent multiple v-model="selectedTags" @update:selectedOptions="handleCheckedTags"
-                :options="tagList" label="name" class="md:w-20rem flex flex-row" getPropertyFunc="getTagPropertyById">
-            </SelectInputComponent>
-            <SelectInputComponent multiple v-model="selectedTiers" @update:selectedOptions="handleCheckedTiers"
-                :options="tierList" label="name" class="md:w-20rem flex flex-row" getPropertyFunc="getTierPropertyById">
-            </SelectInputComponent>
-            <SearchInputComponent v-model="searchedText" @update:selectedOptions="handleSearchedText">
-            </SearchInputComponent>
-        </div>
-
-        <div class="grid-container mt-8 mb-24">
-            <CivCardComponent v-for="civ in filteredCivilisations" :key="civ?.id" :id="civ?.id" :name="civ?.name"
-                :desc="civ?.historical_info[0].text" :tags_id="civ?.tags_id" :tier_id="civ?.tier_id"
-                :civ_leader_effect="civ?.leader.trait.effect" />
-        </div>
-    </div>
-</template>
-
 <style scoped>
 .content-overlay {
     height: calc(100% - var(--header-height));
@@ -202,4 +202,4 @@ function navigateCards(event) {
         padding-right: 4rem;
     }
 }
-</style>
+</style>../../stores/index

@@ -1,3 +1,9 @@
+<template>
+    <input v-model="searchText" type="text" name="text"
+        class="input bg-zinc-800 text-amber-500 border-amber-500 border-2 rounded-lg h-5" placeholder="Recherche"
+        @change="updateSearchText">
+</template>
+
 <script setup>
 
 // IMPORT
@@ -17,12 +23,6 @@ function updateSearchText() {
 }
 
 </script>
-
-<template>
-    <input v-model="searchText" type="text" name="text"
-        class="input bg-zinc-800 text-amber-500 border-amber-500 border-2 rounded-lg" placeholder="Recherche"
-        @change="updateSearchText">
-</template>
 
 <style scoped>
 .input {

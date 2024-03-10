@@ -1,9 +1,19 @@
+<template>
+    <div class="multiple-select relative bg-zinc-800 text-stone-100 flex flex-row flex-wrap gap-2 rounded-lg p-2">
+        <label v-for="opt in options" :key="opt.id" class="checkbox">
+            <input type="checkbox" name="checkbox" v-model="opt.checked" @change="updateSelectedOptions">
+            <span class="name flex rounded-md text-sm px-2 py-1" :class="[opt.checked ? opt.color : '']">{{
+            getOptionProperty(opt.id, 'lib') }}</span>
+        </label>
+    </div>
+</template>
+
 <script setup>
 
 // IMPORT
 // ##############
 // import {  } from 'vue';
-import { correspondanceStore } from '../stores/index';
+import { correspondanceStore } from '../../stores/index';
 
 // VARIABLES
 // ##############
@@ -28,16 +38,6 @@ function getOptionProperty(optionId, property) {
 }
 
 </script>
-
-<template>
-    <div class="multiple-select relative bg-zinc-800 text-stone-100 flex flex-row flex-wrap gap-2 rounded-lg p-2">
-        <label v-for="opt in options" :key="opt.id" class="checkbox">
-            <input type="checkbox" name="checkbox" v-model="opt.checked" @change="updateSelectedOptions">
-            <span class="name flex rounded-md text-sm px-2 py-1" :class="[opt.checked ? opt.color : '']">{{
-            getOptionProperty(opt.id, 'lib') }}</span>
-        </label>
-    </div>
-</template>
 
 <style scoped>
 .multiple-select {
@@ -74,4 +74,4 @@ function getOptionProperty(optionId, property) {
     background-color: rgb(63 63 70 / var(--tw-bg-opacity));
     font-weight: 600;
 }
-</style>
+</style>../../stores/index

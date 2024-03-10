@@ -1,9 +1,20 @@
+<template>
+    <div class="bg-zinc-200 border-zinc-200 text-zinc-800 rounded-sm flex items-center w-16">
+        <select v-model="selectedLang" @change="updateLanguage"
+            class="px-2 py-1 rounded-sm bg-zinc-200 border-zinc-200 text-zinc-800">
+            <option v-for="option in options" :key="option.value" :value="option.lang">
+                {{ option.value }}
+            </option>
+        </select>
+    </div>
+</template>
+
 <script setup>
 
 // IMPORT
 // ##############
 import { ref } from 'vue';
-import { correspondanceStore } from '../stores/index';
+import { correspondanceStore } from '../../stores/index';
 
 // VARIABLES
 // ##############
@@ -32,16 +43,6 @@ function updateLanguage() {
 
 </script>
 
-<template>
-    <div class="bg-zinc-200 border-zinc-200 text-zinc-800 rounded-sm flex items-center w-16">
-        <select v-model="selectedLang" @change="updateLanguage" class="px-2 py-1 rounded-sm bg-zinc-200 border-zinc-200 text-zinc-800">
-            <option v-for="option in options" :key="option.value" :value="option.lang">
-                {{ option.value }}
-            </option>
-        </select>
-    </div>
-</template>
-
 <style scoped>
 h1,
 .muted {
@@ -51,4 +52,4 @@ h1,
 .flag-text {
     margin-left: 10px;
 }
-</style>
+</style>../../stores/index

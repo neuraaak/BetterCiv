@@ -1,11 +1,18 @@
+<template>
+
+  <HeaderComponent class="fixed" />
+  <ContentComponent :civilisations="civ_data" />
+
+</template>./components/layout/HeaderComponent.vue./components/layout/ContentComponent.vue
+
 <script setup>
 
 // IMPORT
 // ##############
 import { ref, watch, computed, onMounted, onBeforeUnmount } from 'vue';
 import { correspondanceStore } from './stores/index';
-import HeaderComponent from './components/HeaderComponent.vue';
-import ContentComponent from './components/ContentComponent.vue';
+import HeaderComponent from './components/layout/HeaderComponent.vue';
+import ContentComponent from './components/layout/ContentComponent.vue';
 
 // VARIABLES
 // ##############
@@ -124,8 +131,3 @@ function mergeCivilizationData(civilizations) {
 };
 
 </script>
-
-<template>
-  <HeaderComponent class="fixed" />
-  <ContentComponent :civilisations="civ_data" />
-</template>

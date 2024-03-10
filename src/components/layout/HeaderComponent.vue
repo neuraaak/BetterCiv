@@ -1,11 +1,3 @@
-<script setup>
-
-// IMPORT
-// ##############
-import SelectLanguageComponent from './SelectLanguageComponent.vue';
-
-</script>
-
 <template>
     <header class="header flex flex-row">
         <div class="flex grow justify-center w-full ml-20">
@@ -14,6 +6,14 @@ import SelectLanguageComponent from './SelectLanguageComponent.vue';
         <SelectLanguageComponent class="mr-8" />
     </header>
 </template>
+
+<script setup>
+
+// IMPORT
+// ##############
+import SelectLanguageComponent from '../global/SelectLanguageComponent.vue';
+
+</script>
 
 <style scoped>
 .header {
