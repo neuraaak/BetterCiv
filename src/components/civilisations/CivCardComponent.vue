@@ -8,8 +8,9 @@
 
         <template #title>
             <div class="flex flex-row items-baseline gap-0 pb-1">
-                <h1 class="font-mono font-bold text-2xl px-3 pt-2">{{ name?.split('|')[0] }}</h1>
-                <CivTierComponent :key="tier_id" :tier_id="tier_id" class="-translate-y-0.5"></CivTierComponent>
+                <h1 class="shrink font-mono font-bold px-3 pt-2" :class="sizeClass">{{ name?.split('|')[0] }}</h1>
+                <CivTierComponent :key="tier_id" :tier_id="tier_id" class=" shrink-0 -translate-y-0.5 pr-3">
+                </CivTierComponent>
             </div>
         </template>
 
@@ -28,7 +29,7 @@
         </template>
 
         <template #footer>
-            <div class="flex flex-row flex-wrap gap-x-2 pl-3 mt-2">
+            <div class="flex flex-row flex-wrap gap-x-2 px-3 mt-2">
                 <CivTagComponent v-for="tag_id in tags_id" :key="tag_id" :tag_id="tag_id"></CivTagComponent>
             </div>
         </template>
@@ -61,9 +62,13 @@ const store = correspondanceStore();
 const selectedState = ref(false);
 const selectedCard = ref(null);
 const keywordIcons = ref([]);
+const sizeClass = ref('');
 
 const buildKeywordIcons = () => {
     keywordIcons.value = store.getIconKeywordsDict;
+};
+const sizeLabelUnicode = () => {
+    sizeClass.value = ["jp", "kr", "zh"].includes(store.lang) ? "text-[1.4rem] leading-8" : "text-2xl";
 };
 
 // COMPUTED
@@ -94,6 +99,10 @@ const civLeaderEffectWithIcons = computed(() => {
 // WATCHER
 // ##############
 watch(() => store.getLanguage, buildKeywordIcons);
+
+watch(() => store.getLanguage, () => {
+    sizeLabelUnicode();
+}, { immediate: true }); // { immediate: true } assure que fetchUnitsBuildings est appelé au montage du composant
 
 // HOOKS
 // ##############

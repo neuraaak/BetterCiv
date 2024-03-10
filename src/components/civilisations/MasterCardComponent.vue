@@ -20,9 +20,9 @@
                                         class="object-contain object-bottom h-[36px] w-auto translate-y-1"
                                         alt="Icon of the civilization" />
                                 </div>
-                                <h1 class="font-mono font-bold tracking-tighter text-[2.75rem] pl-3">{{
+                                <h1 class="shrink font-mono font-bold tracking-tighter pl-3" :class="sizeClass">{{
                             name?.split('|')[0] }}</h1>
-                                <div class="grow -translate-y-1 pl-4">
+                                <div class="grow shrink-0 -translate-y-1 pl-4">
                                     <CivTierComponent :key="tier_id" :tier_id="tier_id" class="">
                                     </CivTierComponent>
                                 </div>
@@ -170,11 +170,16 @@ const descriptionLabel = ref('');
 const unitsLabel = ref('');
 const buildingsLabel = ref('');
 const keywordIcons = ref([]);
+const sizeClass = ref('');
 
 const updateLabels = () => {
     descriptionLabel.value = store.getTranslation("description");
     unitsLabel.value = store.getTranslation("unique_units");
     buildingsLabel.value = store.getTranslation("unique_buildings");
+};
+
+const sizeLabelUnicode = () => {
+    sizeClass.value = ["jp", "kr", "zh"].includes(store.lang) ? "text-[2.5rem] leading-[3.75rem] translate-y-0.5" : "text-[2.75rem] leading-[3.5rem]";
 };
 
 const buildKeywordIcons = () => {
@@ -214,6 +219,7 @@ watch(() => store.getLanguage, () => {
 
 watch(() => store.getLanguage, () => {
     updateLabels();
+    sizeLabelUnicode();
     // Appelle fetchUnitsBuildings chaque fois que la langue change
     fetchUnitsBuildings();
 }, { immediate: true }); // { immediate: true } assure que fetchUnitsBuildings est appelé au montage du composant
