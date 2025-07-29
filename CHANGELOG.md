@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.1.0] - 2025-07-30
 
+> **Related Commits**: [`1601d04`](https://github.com/neuraaak/BetterCiv/commit/1601d047b896361f29ae1db95241685daa229276) - Component reorganization
+
 ### 🎯 Search & Autocomplete System Enhancement
 
 | Feature                 | Description                                                         | Impact                                              |
