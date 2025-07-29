@@ -1,18 +1,19 @@
 <template>
     <header class="header flex flex-row">
         <div class="flex grow justify-center w-full ml-20">
-            <img src="/img/logo.png" alt="Logo" class="logo">
+            <img src="/img/logo.png" alt="Logo" class="logo" />
         </div>
         <SelectLanguageComponent class="mr-8" />
     </header>
 </template>
 
 <script setup>
-
+/**
+ * Header Component - Top navigation bar with logo and language selector
+ */
 // IMPORT
 // ##############
 import SelectLanguageComponent from '../global/SelectLanguageComponent.vue';
-
 </script>
 
 <style scoped>
@@ -25,12 +26,12 @@ import SelectLanguageComponent from '../global/SelectLanguageComponent.vue';
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    /* Ajouté pour aligner le contenu à gauche */
+    /* Added to align content to the left */
     /* padding: 0 20px; */
 }
 
 .logo {
-    height: calc(var(--header-height) * .8);
+    height: calc(var(--header-height) * 0.8);
     width: auto;
 }
 

@@ -1,27 +1,73 @@
 {
-  "name": "better-civ5",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build && copyfiles -u 1 public/* dist",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "autoprefixer": "^10.4.17",
-    "cssnano": "^6.0.4",
-    "pinia": "^2.1.7",
-    "postcss": "^8.4.35",
-    "primeicons": "^6.0.1",
-    "primevue": "^3.48.1",
-    "tailwindcss": "^3.4.1",
-    "vue": "^3.4.19",
-    "vue3-grid-layout-next": "^1.0.6"
-  },
-  "devDependencies": {
-    "@vitejs/plugin-vue": "^5.0.4",
-    "copyfiles": "^2.4.1",
-    "vite": "^5.1.4"
-  }
+    "name": "betterciv5",
+    "description": "Une application web moderne pour explorer et comparer les civilisations de Civilization V",
+    "version": "1.1.0",
+    "private": true,
+    "type": "module",
+    "keywords": [
+        "civilization",
+        "civ5",
+        "vue",
+        "vite",
+        "tailwindcss",
+        "primevue",
+        "gaming",
+        "strategy"
+    ],
+    "author": "Neuraaak",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/neuraaak/BetterCiv.git"
+    },
+    "homepage": "https://github.com/neuraaak/BetterCiv#readme",
+    "bugs": {
+        "url": "https://github.com/neuraaak/BetterCiv/issues"
+    },
+    "scripts": {
+        "dev": "vite --config config/vite.config.js",
+        "build": "vite build --config config/vite.config.js && copyfiles -u 1 public/* dist",
+        "preview": "vite preview --config config/vite.config.js",
+        "deploy": "npm run build && vercel --prod",
+        "deploy:dev": "npm run build && vercel",
+        "deploy:win": "utils\\deploy.bat",
+        "deploy:ps": "powershell -ExecutionPolicy Bypass -File utils\\deploy.ps1",
+        "lint": "eslint src --ext .js,.jsx,.ts,.tsx,.vue --fix --config config/eslint.config.js",
+        "type-check": "tsc --noEmit",
+        "spell": "echo 'cspell temporarily disabled'",
+        "spell:fix": "echo 'cspell temporarily disabled'",
+        "spell:add": "utils\\add-cspell-word.bat",
+        "spell:add:ps": "powershell -ExecutionPolicy Bypass -File utils\\add-cspell-word.ps1",
+        "clean": "rimraf dist _temp",
+        "clean:all": "rimraf dist _temp node_modules package-lock.json"
+    },
+    "dependencies": {
+        "@stagewise-plugins/vue": "^0.6.2",
+        "@stagewise/toolbar-vue": "^0.6.2",
+        "autoprefixer": "^10.4.21",
+        "cssnano": "^6.1.2",
+        "pinia": "^2.3.1",
+        "postcss": "^8.5.6",
+        "primeicons": "^7.0.0",
+        "primevue": "^3.53.1",
+        "tailwindcss": "^3.4.17",
+        "vue": "^3.5.18",
+        "vue3-grid-layout-next": "^1.0.7"
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.32.0",
+        "@types/node": "^24.1.0",
+        "@vitejs/plugin-vue": "^5.2.4",
+        "copyfiles": "^2.4.1",
+        "eslint-config-prettier": "^10.1.8",
+        "eslint-plugin-prettier": "^5.5.3",
+        "eslint-plugin-vue": "^10.3.0",
+        "prettier": "^3.6.2",
+        "typescript": "^5.8.3",
+        "vite": "^5.4.19"
+    },
+    "engines": {
+        "node": ">=16.0.0",
+        "npm": ">=8.0.0"
+    }
 }

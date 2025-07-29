@@ -1,28 +1,46 @@
 <template>
-    <div class="multiple-select relative bg-zinc-800 text-stone-100 flex flex-row flex-wrap gap-2 rounded-lg p-2">
+    <div
+        class="multiple-select relative bg-zinc-800 text-stone-100 flex flex-row flex-wrap gap-2 rounded-lg p-2"
+    >
         <label v-for="opt in options" :key="opt.id" class="checkbox">
-            <input type="checkbox" name="checkbox" v-model="opt.checked" @change="updateSelectedOptions">
-            <span class="name flex rounded-md text-sm px-2 py-1" :class="[opt.checked ? opt.color : '']">{{
-            getOptionProperty(opt.id, 'lib') }}</span>
+            <input
+                type="checkbox"
+                name="checkbox"
+                v-model="opt.checked"
+                @change="updateSelectedOptions"
+            />
+            <span
+                class="name flex rounded-md text-sm px-2 py-1"
+                :class="[opt.checked ? opt.color : '']"
+                >{{ getOptionProperty(opt.id, 'label') }}</span
+            >
         </label>
     </div>
 </template>
 
 <script setup>
-
+/**
+ * Select Input Component - Multi-select dropdown for tags and tiers
+ * Uses translation store to display localized option labels
+ */
 // IMPORT
 // ##############
-// import {  } from 'vue';
-import { correspondanceStore } from '../../stores/index';
+import { translationStore } from '../../stores/index';
 
 // VARIABLES
 // ##############
 const props = defineProps({
-    options: Array,
-    getPropertyFunc: String // Ajout de cette ligne
-})
+    options: {
+        type: Array,
+        required: true,
+    },
+    getPropertyFunc: {
+        type: String,
+        required: true,
+    },
+});
 
-const store = correspondanceStore()
+const store = translationStore();
 
 const emit = defineEmits(['update:selectedOptions']);
 
@@ -36,7 +54,6 @@ function updateSelectedOptions() {
 function getOptionProperty(optionId, property) {
     return store[props.getPropertyFunc](optionId, property);
 }
-
 </script>
 
 <style scoped>
@@ -59,19 +76,16 @@ function getOptionProperty(optionId, property) {
     align-items: center;
     justify-content: center;
     border: none;
-    -webkit-user-select: none;
-    /* Safari */
-    -moz-user-select: none;
-    /* Firefox */
-    -ms-user-select: none;
-    /* Internet Explorer/Edge */
-    user-select: none;
-    /* Chrome and Opera */
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Chrome and Opera */
 }
 
-.multiple-select .checkbox input:checked+.name {
+.multiple-select .checkbox input:checked + .name {
     --tw-bg-opacity: 1;
     background-color: rgb(63 63 70 / var(--tw-bg-opacity));
     font-weight: 600;
 }
-</style>../../stores/index
+</style>
+../../stores/index

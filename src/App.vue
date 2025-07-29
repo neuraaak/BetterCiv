@@ -1,133 +1,143 @@
 <template>
-
-  <HeaderComponent class="fixed" />
-  <ContentComponent :civilisations="civ_data" />
-
-</template>./components/layout/HeaderComponent.vue./components/layout/ContentComponent.vue
+    <HeaderComponent class="fixed" />
+    <ContentComponent :civilisations="civ_data" />
+    <StagewiseToolbar :config="{ plugins: [VuePlugin] }" />
+</template>
 
 <script setup>
-
 // IMPORT
 // ##############
 import { ref, watch, computed, onMounted, onBeforeUnmount } from 'vue';
-import { correspondanceStore } from './stores/index';
+import { translationStore } from './stores/index';
 import HeaderComponent from './components/layout/HeaderComponent.vue';
 import ContentComponent from './components/layout/ContentComponent.vue';
+import { StagewiseToolbar } from '@stagewise/toolbar-vue';
+import VuePlugin from '@stagewise-plugins/vue';
 
 // VARIABLES
 // ##############
-const store = correspondanceStore();
+const store = translationStore();
 //
 const civ_data = ref([]);
 const civ_tiers_and_tags = ref([
-  { "id": 1, "tags_id": [5, 6], "tier_id": 1 }, // 'Amérique'
-  { "id": 2, "tags_id": [5, 2], "tier_id": 0 }, // 'Arabie'
-  { "id": 3, "tags_id": [6, 1], "tier_id": 2 }, // 'Aztèques'
-  { "id": 4, "tags_id": [6], "tier_id": 2 }, // 'Chine'
-  { "id": 5, "tags_id": [4], "tier_id": 2 }, // 'Égypte'
-  { "id": 6, "tags_id": [6], "tier_id": 1 }, // 'Angleterre'
-  { "id": 7, "tags_id": [1], "tier_id": 4 }, // 'France'
-  { "id": 8, "tags_id": [6, 5], "tier_id": 1 }, // 'Allemagne'
-  { "id": 9, "tags_id": [0], "tier_id": 1 }, // 'Grèce'
-  { "id": 10, "tags_id": [0], "tier_id": 4 }, // 'Inde'
-  { "id": 11, "tags_id": [0], "tier_id": 4 }, // 'Iroquois'
-  { "id": 12, "tags_id": [6, 1], "tier_id": 3 }, // 'Japon'
-  { "id": 13, "tags_id": [6], "tier_id": 3 }, // 'Ottomans'
-  { "id": 14, "tags_id": [0], "tier_id": 0 }, // 'Perse'
-  { "id": 15, "tags_id": [4], "tier_id": 4 }, // 'Rome'
-  { "id": 16, "tags_id": [4], "tier_id": 2 }, // 'Russie'
-  { "id": 17, "tags_id": [0], "tier_id": 3 }, // 'Siam'
-  { "id": 18, "tags_id": [6], "tier_id": 1 }, // 'Songhaï'
-  { "id": 19, "tags_id": [6], "tier_id": 1 }, // 'Mongolie'
-  { "id": 20, "tags_id": [0], "tier_id": 1 }, // 'Incas'
-  { "id": 21, "tags_id": [1], "tier_id": 2 }, // 'Espagne'
-  { "id": 22, "tags_id": [6], "tier_id": 2 }, // 'Polynésie'
-  { "id": 23, "tags_id": [6], "tier_id": 2 }, // 'Danemark'
-  { "id": 24, "tags_id": [3], "tier_id": 0 }, // 'Corée'
-  { "id": 25, "tags_id": [3], "tier_id": 0 }, // 'Babylone'
-  { "id": 26, "tags_id": [0], "tier_id": 3 }, // 'Autriche'
-  { "id": 27, "tags_id": [2], "tier_id": 4 }, // 'Byzance'
-  { "id": 28, "tags_id": [0], "tier_id": 4 }, // 'Carthage'
-  { "id": 29, "tags_id": [2], "tier_id": 2 }, // 'Celtes'
-  { "id": 30, "tags_id": [6], "tier_id": 2 }, // 'Éthiopie'
-  { "id": 31, "tags_id": [6, 4], "tier_id": 1 }, // 'Huns'
-  { "id": 32, "tags_id": [0], "tier_id": 1 }, // 'Mayas'
-  { "id": 33, "tags_id": [0], "tier_id": 2 }, // 'Pays-Bas'
-  { "id": 34, "tags_id": [0], "tier_id": 2 }, // 'Suède'
-  { "id": 35, "tags_id": [3], "tier_id": 3 }, // 'Assyrie'
-  { "id": 36, "tags_id": [1], "tier_id": 2 }, // 'Brésil'
-  { "id": 37, "tags_id": [0], "tier_id": 4 }, // 'Indonésie'
-  { "id": 38, "tags_id": [5, 1], "tier_id": 2 }, // 'Maroc'
-  { "id": 39, "tags_id": [0], "tier_id": 0 }, // 'Pologne'
-  { "id": 40, "tags_id": [5], "tier_id": 4 }, // 'Portugal'
-  { "id": 41, "tags_id": [0], "tier_id": 2 }, // 'Shoshones'
-  { "id": 42, "tags_id": [5], "tier_id": 1 }, // 'Venise'
-  { "id": 43, "tags_id": [6], "tier_id": 0 }, // 'Zoulous'
+    { id: 1, tags_id: [5, 6], tier_id: 1 }, // 'America'
+    { id: 2, tags_id: [5, 2], tier_id: 0 }, // 'Arabia'
+    { id: 3, tags_id: [6, 1], tier_id: 2 }, // 'Aztecs'
+    { id: 4, tags_id: [6], tier_id: 2 }, // 'China'
+    { id: 5, tags_id: [4], tier_id: 2 }, // 'Egypt'
+    { id: 6, tags_id: [6], tier_id: 1 }, // 'England'
+    { id: 7, tags_id: [1], tier_id: 4 }, // 'France'
+    { id: 8, tags_id: [6, 5], tier_id: 1 }, // 'Germany'
+    { id: 9, tags_id: [0], tier_id: 1 }, // 'Greece'
+    { id: 10, tags_id: [0], tier_id: 4 }, // 'India'
+    { id: 11, tags_id: [0], tier_id: 4 }, // 'Iroquois'
+    { id: 12, tags_id: [6, 1], tier_id: 3 }, // 'Japan'
+    { id: 13, tags_id: [6], tier_id: 3 }, // 'Ottomans'
+    { id: 14, tags_id: [0], tier_id: 0 }, // 'Persia'
+    { id: 15, tags_id: [4], tier_id: 4 }, // 'Rome'
+    { id: 16, tags_id: [4], tier_id: 2 }, // 'Russia'
+    { id: 17, tags_id: [0], tier_id: 3 }, // 'Siam'
+    { id: 18, tags_id: [6], tier_id: 1 }, // 'Songhai'
+    { id: 19, tags_id: [6], tier_id: 1 }, // 'Mongolia'
+    { id: 20, tags_id: [0], tier_id: 1 }, // 'Incas'
+    { id: 21, tags_id: [1], tier_id: 2 }, // 'Spain'
+    { id: 22, tags_id: [6], tier_id: 2 }, // 'Polynesia'
+    { id: 23, tags_id: [6], tier_id: 2 }, // 'Denmark'
+    { id: 24, tags_id: [3], tier_id: 0 }, // 'Korea'
+    { id: 25, tags_id: [3], tier_id: 0 }, // 'Babylon'
+    { id: 26, tags_id: [0], tier_id: 3 }, // 'Austria'
+    { id: 27, tags_id: [2], tier_id: 4 }, // 'Byzantium'
+    { id: 28, tags_id: [0], tier_id: 4 }, // 'Carthage'
+    { id: 29, tags_id: [2], tier_id: 2 }, // 'Celts'
+    { id: 30, tags_id: [6], tier_id: 2 }, // 'Ethiopia'
+    { id: 31, tags_id: [6, 4], tier_id: 1 }, // 'Huns'
+    { id: 32, tags_id: [0], tier_id: 1 }, // 'Mayans'
+    { id: 33, tags_id: [0], tier_id: 2 }, // 'Netherlands'
+    { id: 34, tags_id: [0], tier_id: 2 }, // 'Sweden'
+    { id: 35, tags_id: [3], tier_id: 3 }, // 'Assyria'
+    { id: 36, tags_id: [1], tier_id: 2 }, // 'Brazil'
+    { id: 37, tags_id: [0], tier_id: 4 }, // 'Indonesia'
+    { id: 38, tags_id: [5, 1], tier_id: 2 }, // 'Morocco'
+    { id: 39, tags_id: [0], tier_id: 0 }, // 'Poland'
+    { id: 40, tags_id: [5], tier_id: 4 }, // 'Portugal'
+    { id: 41, tags_id: [0], tier_id: 2 }, // 'Shoshone'
+    { id: 42, tags_id: [5], tier_id: 1 }, // 'Venice'
+    { id: 43, tags_id: [6], tier_id: 0 }, // 'Zulus'
 ]);
 
 // COMPUTED
 // ##############
-const fetchUrl = computed(() => `https://eyefyre.github.io/civvapi/v1/${store.getLanguage}/civilizations/civilizations.json`);
+const fetchUrl = computed(
+    () =>
+        `https://eyefyre.github.io/civvapi/v1/${store.getLanguage}/civilizations/civilizations.json`
+);
 
 // WATCHER
 // ##############
-watch(() => store.getLanguage, (newLanguage, oldLanguage) => {
-  // Appelle fetchCivilizations chaque fois que la langue change
-  fetchCivilizations();
-}, { immediate: true }); // { immediate: true } assure que fetchCivilizations est appelé au montage du composant
+watch(
+    () => store.getLanguage,
+    (newLanguage, oldLanguage) => {
+        // Calls fetchCivilizations every time the language changes
+        fetchCivilizations();
+    },
+    { immediate: true }
+); // { immediate: true } ensures that fetchCivilizations is called when the component mounts
 
 // HOOKS
 // ##############
 onMounted(() => {
-  document.title = "Better Civ5";
-  document.documentElement.lang = 'fr';
-  window.addEventListener('mousemove', movingBackground);
-  fetchCivilizations();
+    document.title = 'Better Civ5';
+    document.documentElement.lang = 'fr';
+    window.addEventListener('mousemove', movingBackground);
+    fetchCivilizations();
 });
 
 onBeforeUnmount(() => {
-  window.removeEventListener('mousemove', movingBackground);
+    window.removeEventListener('mousemove', movingBackground);
 });
 
 // FUNCTIONS
 // ##############
 function movingBackground(event) {
-  const { clientX, clientY } = event;
-  const largeurEcran = window.innerWidth;
-  const hauteurEcran = window.innerHeight;
+    const { clientX, clientY } = event;
+    const screenWidth = window.innerWidth;
+    const screenHeight = window.innerHeight;
 
-  // Réduit le mouvement à 10% de la position de la souris et inverse le sens
-  const positionX = 50 - (clientX / largeurEcran * 2);
-  const positionY = 50 - (clientY / hauteurEcran * 2);
+    // Reduces movement to 10% of mouse position and reverses direction
+    const positionX = 50 - (clientX / screenWidth) * 2;
+    const positionY = 50 - (clientY / screenHeight) * 2;
 
-  document.body.style.backgroundPosition = `${positionX}% ${positionY}%`;
-};
+    document.body.style.backgroundPosition = `${positionX}% ${positionY}%`;
+}
 
 async function fetchCivilizations() {
-  try {
-    const response = await fetch(fetchUrl.value);
-    if (!response.ok) throw new Error('Network response was not ok');
-    let data = await response.json();
-    civ_data.value = mergeCivilizationData(data);
-    // console.log(civ_data.value)
-  } catch (error) {
-    console.error('There has been a problem with your fetch operation:', error);
-  }
-};
+    try {
+        const response = await fetch(fetchUrl.value);
+        if (!response.ok) throw new Error('Network response was not ok');
+        let data = await response.json();
+        civ_data.value = mergeCivilizationData(data);
+        // console.log(civ_data.value)
+    } catch (error) {
+        console.error('There has been a problem with your fetch operation:', error);
+    }
+}
 
 function mergeCivilizationData(civilizations) {
-  return civilizations.map(civ => {
-    // Trouve l'objet correspondant dans additionalData
-    let additionalInfo = civ_tiers_and_tags.value.find(addCiv => addCiv.id === civ.id);
+    return civilizations.map(civ => {
+        // Finds the corresponding object in additionalData
+        let additionalInfo = civ_tiers_and_tags.value.find(addCiv => addCiv.id === civ.id);
 
-    // Si trouvé, ajoute les nouvelles propriétés à l'objet civ
-    if (additionalInfo) {
-      return { ...civ, tags_id: additionalInfo.tags_id, tier_id: additionalInfo.tier_id };
-    }
+        // If found, adds the new properties to the civ object
+        if (additionalInfo) {
+            return {
+                ...civ,
+                tags_id: additionalInfo.tags_id,
+                tier_id: additionalInfo.tier_id,
+            };
+        }
 
-    // Si non trouvé, retourne l'objet civ sans modifications
-    return civ;
-  });
-};
-
+        // If not found, returns the civ object without modifications
+        return civ;
+    });
+}
 </script>

@@ -1,52 +1,203 @@
 ################################################################
 # ------------------------------------------------------------ #
-# JavaScript
+# JavaScript / Node.js
 # ------------------------------------------------------------ #
 ################################################################
 
 # Dépendances
 node_modules/
-
-# Fichiers de log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
 
 # Environnement runtime
 .env
 .env.test
 .env*.local
+.env.production
 
 # Fichiers et dossiers de cache
 .cache/
 dist/
 temp/
-
-# Fichiers de build
-/build/
-# /public/
-
-# Fichiers DS_Store
-.DS_Store
-
+.temp/
 
 ################################################################
 # ------------------------------------------------------------ #
-# Autres fichiers et dossiers à ignorer
+# Build et production
+# ------------------------------------------------------------ #
+################################################################
+
+# Fichiers de build
+/build/
+/out/
+/.next/
+/.nuxt/
+
+# Fichiers minifiés
+*.min.js
+*.min.css
+*.min.html
+
+################################################################
+# ------------------------------------------------------------ #
+# Éditeurs et IDE
+# ------------------------------------------------------------ #
+################################################################
+
+# VS Code
+.vscode/
+
+# Cursor IDE
+.cursor/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+################################################################
+# ------------------------------------------------------------ #
+# Système d'exploitation
+# ------------------------------------------------------------ #
+################################################################
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.tmp
+*.temp
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+################################################################
+# ------------------------------------------------------------ #
+# Fichiers temporaires et de test
+# ------------------------------------------------------------ #
+################################################################
+
+# Dossier temporaire du projet
+_temp/
+temp/
+tmp/
+
+# Fichiers de test temporaires
+*.test.tmp
+*.spec.tmp
+test-results/
+coverage/
+.nyc_output/
+
+# Logs
+*.log
+*.log.*
+logs/
+
+################################################################
+# ------------------------------------------------------------ #
+# Fichiers compressés et archives
 # ------------------------------------------------------------ #
 ################################################################
 
 *.exe
 *.pem
 *.crx
-*.log
-*.log.*
 *.tar.gz
 *.zip
 *.rar
 *.7z
+*.bz2
+*.gz
+*.xz
+
+################################################################
+# ------------------------------------------------------------ #
+# Bases de données et fichiers de données
+# ------------------------------------------------------------ #
+################################################################
+
 *.db
 *.sqlite
-/temp/
-/cache/
+*.sqlite3
+*.mdb
+*.accdb
+
+################################################################
+# ------------------------------------------------------------ #
+# Sécurité et certificats
+# ------------------------------------------------------------ #
+################################################################
+
+*.key
+*.pem
+*.crt
+*.csr
+*.p12
+*.pfx
+
+################################################################
+# ------------------------------------------------------------ #
+# Fichiers de sauvegarde
+# ------------------------------------------------------------ #
+################################################################
+
 /backups/
+*.bak
+*.backup
+*.old
+*.orig
