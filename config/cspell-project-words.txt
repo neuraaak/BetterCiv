@@ -213,4 +213,7 @@ npm
 git
 GitHub
 Vercel
-Netlify 
+Netlify
+
+# Mots français courants
+géné 
