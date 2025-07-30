@@ -207,6 +207,7 @@ import Card from 'primevue/card';
 import { defineAsyncComponent } from 'vue';
 import LazyImageComponent from '../global/LazyImageComponent.vue';
 import TextWithIconsComponent from '../global/TextWithIconsComponent.vue';
+import { validateUnitData, validateBuildingData, type ApiUnit, type ApiBuilding } from '../../utils/validation';
 
 // Lazy loading des sous-composants
 const CivTierComponent = defineAsyncComponent({
@@ -242,8 +243,8 @@ const props = defineProps({
 const store = translationStore();
 
 // Component data
-const unitData = ref([]);
-const buildingData = ref([]);
+const unitData = ref<ApiUnit[]>([]);
+const buildingData = ref<ApiBuilding[]>([]);
 const descriptionLabel = ref('');
 const unitsLabel = ref('');
 const buildingsLabel = ref('');
@@ -323,7 +324,7 @@ onMounted(() => {
 
 // FUNCTIONS
 // ##############
-async function fetchUnitsBuildings() {
+async function fetchUnitsBuildings(): Promise<void> {
     // Load unit data
     const units = props.civ_units || []; // Ensure array exists
     const unitFetches = units.map(async unit => {
@@ -331,7 +332,10 @@ async function fetchUnitsBuildings() {
             const response = await fetch(unit.url.replace('/en/', `/${store.getLanguage}/`));
             if (!response.ok) throw new Error('Network response was not ok');
             const data = await response.json();
-            return { ...unit, icon: data.icon }; // Keep name and add icon
+            
+            // Validate unit data
+            const validatedUnit = validateUnitData({ ...unit, icon: data.icon });
+            return validatedUnit || { ...unit, icon: undefined };
         } catch (error) {
             console.error('Error fetching unit data:', error);
             return { ...unit, icon: undefined }; // Handle error by keeping unit name
@@ -345,7 +349,10 @@ async function fetchUnitsBuildings() {
             const response = await fetch(building.url.replace('/en/', `/${store.getLanguage}/`));
             if (!response.ok) throw new Error('Network response was not ok');
             const data = await response.json();
-            return { ...building, icon: data.icon }; // Keep name and add icon
+            
+            // Validate building data
+            const validatedBuilding = validateBuildingData({ ...building, icon: data.icon });
+            return validatedBuilding || { ...building, icon: undefined };
         } catch (error) {
             console.error('Error fetching building data:', error);
             return { ...building, icon: undefined }; // Handle error by keeping building name
@@ -353,8 +360,11 @@ async function fetchUnitsBuildings() {
     });
 
     // Resolve all promises and store results
-    unitData.value = await Promise.all(unitFetches);
-    buildingData.value = await Promise.all(buildingFetches);
+    const unitResults = await Promise.all(unitFetches);
+    const buildingResults = await Promise.all(buildingFetches);
+    
+    unitData.value = unitResults.filter((unit): unit is ApiUnit => unit !== null);
+    buildingData.value = buildingResults.filter((building): building is ApiBuilding => building !== null);
 }
 
 function getTranslation(key) {

@@ -13,12 +13,13 @@ import HeaderComponent from './components/layout/HeaderComponent.vue';
 import ContentComponent from './components/layout/ContentComponent.vue';
 import { StagewiseToolbar } from '@stagewise/toolbar-vue';
 import VuePlugin from '@stagewise-plugins/vue';
+import { validateApiResponse, type ApiCivilization } from './utils/validation';
 
 // VARIABLES
 // ##############
 const store = translationStore();
 //
-const civ_data = ref([]);
+const civ_data = ref<ApiCivilization[]>([]);
 const civ_tiers_and_tags = ref([
     { id: 1, tags_id: [5, 6], tier_id: 1 }, // 'America'
     { id: 2, tags_id: [5, 2], tier_id: 0 }, // 'Arabia'
@@ -98,34 +99,42 @@ onBeforeUnmount(() => {
 
 // FUNCTIONS
 // ##############
-function movingBackground(event) {
+function movingBackground(event: MouseEvent): void {
     const { clientX, clientY } = event;
     const screenWidth = window.innerWidth;
     const screenHeight = window.innerHeight;
 
-    // Reduces movement to 10% of mouse position and reverses direction
+    // Use CSS custom properties for better performance (no reflow)
     const positionX = 50 - (clientX / screenWidth) * 2;
     const positionY = 50 - (clientY / screenHeight) * 2;
 
-    document.body.style.backgroundPosition = `${positionX}% ${positionY}%`;
+    document.documentElement.style.setProperty('--bg-x', `${positionX}%`);
+    document.documentElement.style.setProperty('--bg-y', `${positionY}%`);
 }
 
-async function fetchCivilizations() {
+async function fetchCivilizations(): Promise<void> {
     try {
         const response = await fetch(fetchUrl.value);
         if (!response.ok) throw new Error('Network response was not ok');
-        let data = await response.json();
-        civ_data.value = mergeCivilizationData(data);
-        // console.log(civ_data.value)
+        const data = await response.json();
+        
+        // Validate API response
+        const validatedData = validateApiResponse(data);
+        if (!validatedData) {
+            throw new Error('Invalid API response data');
+        }
+        
+        civ_data.value = mergeCivilizationData(validatedData);
     } catch (error) {
         console.error('There has been a problem with your fetch operation:', error);
+        civ_data.value = []; // Reset to empty array on error
     }
 }
 
-function mergeCivilizationData(civilizations) {
+function mergeCivilizationData(civilizations: ApiCivilization[]): ApiCivilization[] {
     return civilizations.map(civ => {
         // Finds the corresponding object in additionalData
-        let additionalInfo = civ_tiers_and_tags.value.find(addCiv => addCiv.id === civ.id);
+        const additionalInfo = civ_tiers_and_tags.value.find(addCiv => addCiv.id === civ.id);
 
         // If found, adds the new properties to the civ object
         if (additionalInfo) {
