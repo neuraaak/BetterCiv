@@ -7,5 +7,8 @@
     "bracketSpacing": true,
     "arrowParens": "avoid",
     "printWidth": 100,
-    "endOfLine": "lf"
+    "endOfLine": "lf",
+    "vueIndentScriptAndStyle": true,
+    "htmlWhitespaceSensitivity": "css",
+    "embeddedLanguageFormatting": "auto"
 }

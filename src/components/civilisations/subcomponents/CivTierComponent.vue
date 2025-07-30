@@ -1,13 +1,13 @@
 <template>
-    <Tag>
-        <div class="font-sans font-light text-xs">
-            <span
-                class="bg-zinc-700 px-2 py-0.5 font-medium tracking-wider rounded-sm"
-                :class="store.getTierPropertyById(tier_id, 'color')"
-                >{{ store.getTierPropertyById(tier_id, 'label') }}</span
-            >
-        </div>
-    </Tag>
+  <Tag>
+    <div class="font-sans font-light text-xs">
+      <span
+        class="bg-zinc-700 px-2 py-0.5 font-medium tracking-wider rounded-sm"
+        :class="store.getTierPropertyById(tier_id, 'color')"
+        >{{ store.getTierPropertyById(tier_id, "label") }}</span
+      >
+    </div>
+  </Tag>
 </template>
 
 <script setup>
@@ -17,13 +17,13 @@
  */
 // IMPORT
 // ##############
-import { translationStore } from '../../../stores/index';
-import Tag from 'primevue/tag';
+import { translationStore } from "../../../stores/index";
+import Tag from "primevue/tag";
 
 // VARIABLES
 // ##############
 const props = defineProps({
-    tier_id: Number,
+  tier_id: Number,
 });
 
 const store = translationStore();

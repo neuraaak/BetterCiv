@@ -24,4 +24,22 @@ node_modules/
 
 # OS files
 .DS_Store
-Thumbs.db 
+Thumbs.db
+
+# Lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Generated files
+*.min.js
+*.min.css
+*.d.ts
+
+# Documentation
+docs/
+*.md
+
+# Config files
+config/
+utils/ 
