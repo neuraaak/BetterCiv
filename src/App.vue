@@ -2,27 +2,6 @@
     <HeaderComponent class="fixed" />
     <ContentComponent :civilisations="civ_data" />
     <StagewiseToolbar :config="{ plugins: [VuePlugin] }" />
-    
-    <!-- Notification de mise à jour -->
-    <UpdateNotification
-        :updateAvailable="updateAvailable"
-        :onUpdate="installUpdate"
-    />
-    
-    <!-- Indicateur hors ligne -->
-    <div
-        v-if="swState.isOffline"
-        class="offline-indicator fixed bottom-4 left-4 z-50 bg-red-600 text-white px-3 py-2 rounded-lg shadow-lg"
-        role="alert"
-    >
-        <div class="flex items-center space-x-2">
-            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M3.707 2.293a1 1 0 00-1.414 1.414l14 14a1 1 0 001.414-1.414l-1.473-1.473A10.014 10.014 0 0019.542 10C18.268 5.943 14.478 3 10 3a9.958 9.958 0 00-4.512 1.074l-1.78-1.781zm4.261 4.26l1.514 1.515a2.003 2.003 0 012.45 2.45l1.514 1.514a4 4 0 00-5.478-5.478z" clip-rule="evenodd" />
-                <path d="M12.454 16.697L9.75 13.992a4 4 0 01-3.742-3.741L2.335 6.578A9.98 9.98 0 00.458 10c1.274 4.057 5.065 7 9.542 7 .847 0 1.669-.105 2.454-.303z" />
-            </svg>
-            <span class="text-sm font-medium">Mode hors ligne</span>
-        </div>
-    </div>
 </template>
 
 <script setup>
@@ -34,17 +13,13 @@ import HeaderComponent from './components/layout/HeaderComponent.vue';
 import ContentComponent from './components/layout/ContentComponent.vue';
 import { StagewiseToolbar } from '@stagewise/toolbar-vue';
 import VuePlugin from '@stagewise-plugins/vue';
-import { validateApiResponse, type ApiCivilization } from './utils/validation';
-import { useServiceWorker } from './composables/useServiceWorker';
-import UpdateNotification from './components/global/UpdateNotification.vue';
 
 // VARIABLES
 // ##############
 const store = translationStore();
-const { state: swState, updateAvailable, installUpdate } = useServiceWorker();
 
 //
-const civ_data = ref<ApiCivilization[]>([]);
+const civ_data = ref([]);
 const civ_tiers_and_tags = ref([
     { id: 1, tags_id: [5, 6], tier_id: 1 }, // 'America'
     { id: 2, tags_id: [5, 2], tier_id: 0 }, // 'Arabia'
@@ -124,42 +99,34 @@ onBeforeUnmount(() => {
 
 // FUNCTIONS
 // ##############
-function movingBackground(event: MouseEvent): void {
+function movingBackground(event) {
     const { clientX, clientY } = event;
     const screenWidth = window.innerWidth;
     const screenHeight = window.innerHeight;
 
-    // Use CSS custom properties for better performance (no reflow)
+    // Reduces movement to 10% of mouse position and reverses direction
     const positionX = 50 - (clientX / screenWidth) * 2;
     const positionY = 50 - (clientY / screenHeight) * 2;
 
-    document.documentElement.style.setProperty('--bg-x', `${positionX}%`);
-    document.documentElement.style.setProperty('--bg-y', `${positionY}%`);
+    document.body.style.backgroundPosition = `${positionX}% ${positionY}%`;
 }
 
-async function fetchCivilizations(): Promise<void> {
+async function fetchCivilizations() {
     try {
         const response = await fetch(fetchUrl.value);
         if (!response.ok) throw new Error('Network response was not ok');
-        const data = await response.json();
-        
-        // Validate API response
-        const validatedData = validateApiResponse(data);
-        if (!validatedData) {
-            throw new Error('Invalid API response data');
-        }
-        
-        civ_data.value = mergeCivilizationData(validatedData);
+        let data = await response.json();
+        civ_data.value = mergeCivilizationData(data);
+        // console.log(civ_data.value)
     } catch (error) {
         console.error('There has been a problem with your fetch operation:', error);
-        civ_data.value = []; // Reset to empty array on error
     }
 }
 
-function mergeCivilizationData(civilizations: ApiCivilization[]): ApiCivilization[] {
+function mergeCivilizationData(civilizations) {
     return civilizations.map(civ => {
         // Finds the corresponding object in additionalData
-        const additionalInfo = civ_tiers_and_tags.value.find(addCiv => addCiv.id === civ.id);
+        let additionalInfo = civ_tiers_and_tags.value.find(addCiv => addCiv.id === civ.id);
 
         // If found, adds the new properties to the civ object
         if (additionalInfo) {
