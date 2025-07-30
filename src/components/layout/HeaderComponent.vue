@@ -1,7 +1,12 @@
 <template>
     <header class="header flex flex-row">
         <div class="flex grow justify-center w-full ml-20">
-            <img src="/img/logo.png" alt="Logo" class="logo" />
+            <LazyImageComponent 
+                src="/img/logo.png" 
+                alt="Logo" 
+                imageClass="logo"
+                threshold="0.5"
+            />
         </div>
         <SelectLanguageComponent class="mr-8" />
     </header>
@@ -14,6 +19,7 @@
 // IMPORT
 // ##############
 import SelectLanguageComponent from '../global/SelectLanguageComponent.vue';
+import LazyImageComponent from '../global/LazyImageComponent.vue';
 </script>
 
 <style scoped>

@@ -73,12 +73,25 @@
  */
 // IMPORT
 // ##############
-import { ref, watch, computed, onMounted, onUnmounted } from 'vue';
+import { ref, watch, computed, onMounted, onUnmounted, defineAsyncComponent } from 'vue';
 import { translationStore } from '../../stores/index';
-import CivCardComponent from '../civilisations/CivCardComponent.vue';
-import MasterCardComponent from '../civilisations/MasterCardComponent.vue';
 import SelectInputComponent from '../global/SelectInputComponent.vue';
 import SearchInputComponent from '../global/SearchInputComponent.vue';
+
+// Lazy loading des composants lourds
+const CivCardComponent = defineAsyncComponent({
+    loader: () => import('../civilisations/CivCardComponent.vue'),
+    loadingComponent: () => import('../global/LoadingComponent.vue'),
+    delay: 200,
+    timeout: 3000
+});
+
+const MasterCardComponent = defineAsyncComponent({
+    loader: () => import('../civilisations/MasterCardComponent.vue'),
+    loadingComponent: () => import('../global/LoadingComponent.vue'),
+    delay: 200,
+    timeout: 3000
+});
 
 // VARIABLES
 // ##############

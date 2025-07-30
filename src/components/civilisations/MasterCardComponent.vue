@@ -12,10 +12,11 @@
                     >
                         <template #header>
                             <div class="overflow-hidden h-[220px]">
-                                <img
+                                <LazyImageComponent
                                     :src="civBackground"
                                     alt="user header"
-                                    class="object-cover object-top w-full h-full"
+                                    imageClass="object-cover object-top w-full h-full"
+                                    threshold="0.1"
                                 />
                             </div>
                         </template>
@@ -23,10 +24,11 @@
                         <template #title>
                             <div class="flex flex-row items-baseline gap-0 px-4 pb-1 mt-1">
                                 <div class="flex h-full">
-                                    <img
+                                    <LazyImageComponent
                                         :src="civ_icon"
-                                        class="object-contain object-bottom h-[36px] w-auto translate-y-1"
+                                        imageClass="object-contain object-bottom h-[36px] w-auto translate-y-1"
                                         alt="Icon of the civilization"
+                                        threshold="0.5"
                                     />
                                 </div>
                                 <h1
@@ -82,10 +84,11 @@
                                             v-if="civ_leader_icon !== undefined"
                                             class="flex h-full shrink-0 w-16"
                                         >
-                                            <img
+                                            <LazyImageComponent
                                                 :src="civ_leader_icon"
-                                                class="object-contain object-bottom max-h-full w-full translate-y-1"
+                                                imageClass="object-contain object-bottom max-h-full w-full translate-y-1"
                                                 alt="Icon of the civilization"
+                                                threshold="0.5"
                                             />
                                         </div>
                                         <div
@@ -94,10 +97,12 @@
                                             <h2 class="font-mono font-bold text-2xl pl-1 pt-1">
                                                 {{ civ_leader?.split('|')[0] }}
                                             </h2>
-                                            <p
-                                                v-html="civLeaderEffectWithIcons"
+                                            <TextWithIconsComponent
+                                                :text="civ_leader_effect"
+                                                :keywordIcons="keywordIcons"
+                                                :language="store.lang"
                                                 class="font-sans font-light text-sm pl-1 -translate-y-0.5"
-                                            ></p>
+                                            />
                                         </div>
                                     </div>
                                 </div>
@@ -114,11 +119,12 @@
                                         <div v-for="(unit, index) in unitData" :key="unit.name">
                                             <div class="flex flex-row gap-x-1 h-8">
                                                 <div class="flex h-full shrink-0 w-6">
-                                                    <img
+                                                    <LazyImageComponent
                                                         v-if="unit.icon !== undefined"
                                                         :src="unit.icon"
-                                                        class="object-contain object-center h-full w-full"
+                                                        imageClass="object-contain object-center h-full w-full"
                                                         :alt="unit.name.split('|')[0]"
+                                                        threshold="0.5"
                                                     />
                                                 </div>
                                                 <div
@@ -149,11 +155,12 @@
                                         <div v-for="(building, index) in buildingData">
                                             <div class="flex flex-row gap-x-1 h-8">
                                                 <div class="flex h-full shrink-0 w-6">
-                                                    <img
+                                                    <LazyImageComponent
                                                         v-if="building.name !== undefined"
                                                         :src="building.icon"
-                                                        class="object-contain object-center h-full w-full"
+                                                        imageClass="object-contain object-center h-full w-full"
                                                         :alt="building.name.split('|')[0]"
+                                                        threshold="0.5"
                                                     />
                                                 </div>
                                                 <div
@@ -197,8 +204,24 @@
 import { ref, watch, computed, onMounted, onUnmounted } from 'vue';
 import { translationStore } from '../../stores/index';
 import Card from 'primevue/card';
-import CivTierComponent from './subcomponents/CivTierComponent.vue'; // cspell:ignore subcomponents
-import CivTagComponent from './subcomponents/CivTagComponent.vue'; // cspell:ignore subcomponents
+import { defineAsyncComponent } from 'vue';
+import LazyImageComponent from '../global/LazyImageComponent.vue';
+import TextWithIconsComponent from '../global/TextWithIconsComponent.vue';
+
+// Lazy loading des sous-composants
+const CivTierComponent = defineAsyncComponent({
+    loader: () => import('./subcomponents/CivTierComponent.vue'),
+    loadingComponent: () => import('../global/LoadingComponent.vue'),
+    delay: 100,
+    timeout: 2000
+});
+
+const CivTagComponent = defineAsyncComponent({
+    loader: () => import('./subcomponents/CivTagComponent.vue'),
+    loadingComponent: () => import('../global/LoadingComponent.vue'),
+    delay: 100,
+    timeout: 2000
+});
 
 // VARIABLES
 // ##############
@@ -251,28 +274,7 @@ const civBackground = computed(() => {
     return `/img/card-cover2.jpg`;
 });
 
-const civLeaderEffectWithIcons = computed(() => {
-    let text = props.civ_leader_effect?.replace(/\[.*?\]/g, '').trim();
 
-    keywordIcons.value.forEach(({ text: keyword, icon }) => {
-        const iconPath = icon;
-        let regex = null;
-        if (['ru', 'jp', 'kr', 'zh'].includes(store.lang)) {
-            regex = new RegExp(`${keyword}`, 'ui');
-        } else {
-            regex = new RegExp(`\\b${keyword}\\b`, 'gi');
-        }
-
-        if (text !== undefined) {
-            text = text.replace(
-                regex,
-                `<span class="keyword-icon translate-y-[0.2rem]" style="display: inline-flex; align-items: center; height: 20px;"><img src="${iconPath}" alt="${keyword}" style="display: inline; height: 16px; vertical-align: middle;">${keyword}</span>`
-            );
-        }
-    });
-
-    return text;
-});
 
 // WATCHER
 // ##############

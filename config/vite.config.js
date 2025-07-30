@@ -15,10 +15,36 @@ export default defineConfig({
     build: {
         outDir: resolve(__dirname, '../dist'),
         emptyOutDir: true,
+        rollupOptions: {
+            output: {
+                manualChunks: {
+                    // Séparer les composants lourds
+                    'civilizations': [
+                        './src/components/civilisations/MasterCardComponent.vue',
+                        './src/components/civilisations/CivCardComponent.vue'
+                    ],
+                    'subcomponents': [
+                        './src/components/civilisations/subcomponents/CivTierComponent.vue',
+                        './src/components/civilisations/subcomponents/CivTagComponent.vue'
+                    ],
+                    'lazy-components': [
+                        './src/components/global/LazyImageComponent.vue',
+                        './src/components/global/LazyIconComponent.vue',
+                        './src/components/global/TextWithIconsComponent.vue'
+                    ],
+                    // Séparer PrimeVue
+                    'primevue': ['primevue/card', 'primevue/tag']
+                }
+            }
+        }
     },
     resolve: {
         alias: {
             '@': resolve(__dirname, '../src'),
         },
     },
+    // Optimisations pour le lazy loading
+    optimizeDeps: {
+        include: ['vue', 'pinia']
+    }
 });
