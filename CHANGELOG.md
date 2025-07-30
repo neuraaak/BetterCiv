@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.1.0] - 2025-07-30
 
-> **Related Commits**: [`1601d04`](https://github.com/neuraaak/BetterCiv/commit/1601d047b896361f29ae1db95241685daa229276) - Component reorganization
+> **Related Commits**: [`1601d04`](https://github.com/neuraaak/BetterCiv5/commit/1601d047b896361f29ae1db95241685daa229276) - Component reorganization
 
 ### 🎯 Search & Autocomplete System Enhancement
 
@@ -45,7 +45,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.0.0] - 2024-03-10
 
-> **Related Commits**: [`ce4f19a`](https://github.com/neuraaak/BetterCiv/commit/ce4f19abb9d5a3a7afb5f584661008d8e244583b) - Component reorganization
+> **Related Commits**: [`ce4f19a`](https://github.com/neuraaak/BetterCiv5/commit/ce4f19abb9d5a3a7afb5f584661008d8e244583b) - Component reorganization
 
 ### 🎯 Component Architecture & Organization
 
@@ -58,7 +58,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### 🔧 Search & Language System Enhancements
 
-> **Related Commits**: [`0c31d69`](https://github.com/neuraaak/BetterCiv/commit/0c31d6942536c47fc3cab9633fd91e75b4177469) - Search bar & language fixes, [`3230d82`](https://github.com/neuraaak/BetterCiv/commit/3230d8297c7caa55d1339d2c2ca6be041bb502b0) - Translation icons fix
+> **Related Commits**: [`0c31d69`](https://github.com/neuraaak/BetterCiv5/commit/0c31d6942536c47fc3cab9633fd91e75b4177469) - Search bar & language fixes, [`3230d82`](https://github.com/neuraaak/BetterCiv5/commit/3230d8297c7caa55d1339d2c2ca6be041bb502b0) - Translation icons fix
 
 | Feature                | Description                                    | Impact                    |
 | ---------------------- | ---------------------------------------------- | ------------------------- |
@@ -69,7 +69,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### 🛠️ Technical Implementation
 
-> **Related Commits**: [`ce4f19a`](https://github.com/neuraaak/BetterCiv/commit/ce4f19abb9d5a3a7afb5f584661008d8e244583b) - Component structure, [`0c31d69`](https://github.com/neuraaak/BetterCiv/commit/0c31d6942536c47fc3cab9633fd91e75b4177469) - Search implementation
+> **Related Commits**: [`ce4f19a`](https://github.com/neuraaak/BetterCiv5/commit/ce4f19abb9d5a3a7afb5f584661008d8e244583b) - Component structure, [`0c31d69`](https://github.com/neuraaak/BetterCiv5/commit/0c31d6942536c47fc3cab9633fd91e75b4177469) - Search implementation
 
 | Component                   | Feature                    | Description                                           |
 | --------------------------- | -------------------------- | ----------------------------------------------------- |
@@ -108,7 +108,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.1.0] - 2024-03-04
 
-> **Related Commits**: [`d93f787`](https://github.com/neuraaak/BetterCiv/commit/d93f787422655185d25b7ce818e53d33bd00b229) - Initial project setup, [`5fbfed2`](https://github.com/neuraaak/BetterCiv/commit/5fbfed2980e3bca30c5924348d3a9d390e3ddc7c) - Initial commit
+> **Related Commits**: [`d93f787`](https://github.com/neuraaak/BetterCiv5/commit/d93f787422655185d25b7ce818e53d33bd00b229) - Initial project setup, [`5fbfed2`](https://github.com/neuraaak/BetterCiv5/commit/5fbfed2980e3bca30c5924348d3a9d390e3ddc7c) - Initial commit
 
 ### 🚀 Initial Project Foundation
 
@@ -121,7 +121,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### 🎨 Core Components Implementation
 
-> **Related Commits**: [`d93f787`](https://github.com/neuraaak/BetterCiv/commit/d93f787422655185d25b7ce818e53d33bd00b229) - All core components
+> **Related Commits**: [`d93f787`](https://github.com/neuraaak/BetterCiv5/commit/d93f787422655185d25b7ce818e53d33bd00b229) - All core components
 
 | Component                   | Description                       | Features                                         |
 | --------------------------- | --------------------------------- | ------------------------------------------------ |
@@ -137,7 +137,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### 🔧 Build & Development Configuration
 
-> **Related Commits**: [`d93f787`](https://github.com/neuraaak/BetterCiv/commit/d93f787422655185d25b7ce818e53d33bd00b229) - Build configuration
+> **Related Commits**: [`d93f787`](https://github.com/neuraaak/BetterCiv5/commit/d93f787422655185d25b7ce818e53d33bd00b229) - Build configuration
 
 | Configuration          | Purpose                        | Benefits                                          |
 | ---------------------- | ------------------------------ | ------------------------------------------------- |
@@ -196,13 +196,13 @@ Configuration files:
 
 | Date       | Type   | Hash                                                                                               | Description                                                                         | Files Modified                                                                                                                                                                                                                         |
 | ---------- | ------ | -------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 2024-03-10 | UPDATE | [`8b62632`](https://github.com/neuraaak/BetterCiv/commit/8b62632cb4e5051bf6b86f8543ed9ceb1c93da8e) | Edited civ name display in cards                                                    | `src/components/civilisations/CivCardComponent.vue`, `src/components/civilisations/MasterCardComponent.vue`                                                                                                                            |
-| 2024-03-10 | UPDATE | [`ce4f19a`](https://github.com/neuraaak/BetterCiv/commit/ce4f19abb9d5a3a7afb5f584661008d8e244583b) | Reorganized components in folder structure and code sections                        | `src/App.vue`, `src/components/civilisations/`, `src/components/global/`, `src/components/layout/`                                                                                                                                     |
-| 2024-03-09 | UPDATE | [`3101674`](https://github.com/neuraaak/BetterCiv/commit/31016744d7624122c96949ef7a6369f42472cb42) | Added civilization name in search results                                           | `src/components/ContentComponent.vue`                                                                                                                                                                                                  |
-| 2024-03-06 | UPDATE | [`0c31d69`](https://github.com/neuraaak/BetterCiv/commit/0c31d6942536c47fc3cab9633fd91e75b4177469) | Edited color of the select language to avoid bugs related to css - Added search bar | `src/components/CivCardComponent.vue`, `src/components/ContentComponent.vue`, `src/components/MasterCardComponent.vue`, `src/components/SearchInputComponent.vue`, `src/components/SelectLanguageComponent.vue`, `src/stores/index.js` |
-| 2024-03-06 | HOTFIX | [`3230d82`](https://github.com/neuraaak/BetterCiv/commit/3230d8297c7caa55d1339d2c2ca6be041bb502b0) | Icons span for tanslations - Span is now injected whatever the language is.         | `src/components/CivCardComponent.vue`, `src/components/MasterCardComponent.vue`, `src/stores/index.js`                                                                                                                                 |
-| 2024-03-04 | INIT   | [`d93f787`](https://github.com/neuraaak/BetterCiv/commit/d93f787422655185d25b7ce818e53d33bd00b229) | Initial project setup with all core components                                      | Complete project structure with 30+ files                                                                                                                                                                                              |
-| 2024-03-04 | INIT   | [`5fbfed2`](https://github.com/neuraaak/BetterCiv/commit/5fbfed2980e3bca30c5924348d3a9d390e3ddc7c) | Initial commit with .gitignore                                                      | `.gitignore`                                                                                                                                                                                                                           |
+| 2024-03-10 | UPDATE | [`8b62632`](https://github.com/neuraaak/BetterCiv5/commit/8b62632cb4e5051bf6b86f8543ed9ceb1c93da8e) | Edited civ name display in cards                                                    | `src/components/civilisations/CivCardComponent.vue`, `src/components/civilisations/MasterCardComponent.vue`                                                                                                                            |
+| 2024-03-10 | UPDATE | [`ce4f19a`](https://github.com/neuraaak/BetterCiv5/commit/ce4f19abb9d5a3a7afb5f584661008d8e244583b) | Reorganized components in folder structure and code sections                        | `src/App.vue`, `src/components/civilisations/`, `src/components/global/`, `src/components/layout/`                                                                                                                                     |
+| 2024-03-09 | UPDATE | [`3101674`](https://github.com/neuraaak/BetterCiv5/commit/31016744d7624122c96949ef7a6369f42472cb42) | Added civilization name in search results                                           | `src/components/ContentComponent.vue`                                                                                                                                                                                                  |
+| 2024-03-06 | UPDATE | [`0c31d69`](https://github.com/neuraaak/BetterCiv5/commit/0c31d6942536c47fc3cab9633fd91e75b4177469) | Edited color of the select language to avoid bugs related to css - Added search bar | `src/components/CivCardComponent.vue`, `src/components/ContentComponent.vue`, `src/components/MasterCardComponent.vue`, `src/components/SearchInputComponent.vue`, `src/components/SelectLanguageComponent.vue`, `src/stores/index.js` |
+| 2024-03-06 | HOTFIX | [`3230d82`](https://github.com/neuraaak/BetterCiv5/commit/3230d8297c7caa55d1339d2c2ca6be041bb502b0) | Icons span for tanslations - Span is now injected whatever the language is.         | `src/components/CivCardComponent.vue`, `src/components/MasterCardComponent.vue`, `src/stores/index.js`                                                                                                                                 |
+| 2024-03-04 | INIT   | [`d93f787`](https://github.com/neuraaak/BetterCiv5/commit/d93f787422655185d25b7ce818e53d33bd00b229) | Initial project setup with all core components                                      | Complete project structure with 30+ files                                                                                                                                                                                              |
+| 2024-03-04 | INIT   | [`5fbfed2`](https://github.com/neuraaak/BetterCiv5/commit/5fbfed2980e3bca30c5924348d3a9d390e3ddc7c) | Initial commit with .gitignore                                                      | `.gitignore`                                                                                                                                                                                                                           |
 
 ## 📈 Statistics
 
