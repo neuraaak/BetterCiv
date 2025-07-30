@@ -27,8 +27,10 @@
     "scripts": {
         "dev": "vite --config config/vite.config.js",
         "build": "vite build --config config/vite.config.js && copyfiles -u 1 public/* dist",
+        "build:preview": "vite build --config config/vite.config.js --mode preview && copyfiles -u 1 public/* dist",
         "preview": "vite preview --config config/vite.config.js",
         "deploy": "npm run build && vercel --prod",
+        "deploy:preview": "npm run build:preview && vercel --prod",
         "deploy:dev": "npm run build && vercel",
         "deploy:win": "utils\\deploy.bat",
         "deploy:ps": "powershell -ExecutionPolicy Bypass -File utils\\deploy.ps1",
@@ -64,7 +66,9 @@
         "eslint-plugin-vue": "^10.3.0",
         "prettier": "^3.6.2",
         "typescript": "^5.8.3",
-        "vite": "^5.4.19"
+        "vite": "^5.4.19",
+        "vite-plugin-pwa": "^1.0.2",
+        "workbox-window": "^7.3.0"
     },
     "engines": {
         "node": ">=16.0.0",

@@ -32,9 +32,33 @@
     ],
     "functions": {},
     "env": {
-        "NODE_ENV": "production"
+        "NODE_ENV": "production",
+        "VITE_APP_ENV": "production",
+        "VITE_API_BASE_URL": "https://eyefyre.github.io",
+        "VITE_APP_VERSION": "1.2.0"
     },
     "headers": [
+        {
+            "source": "/(.*)",
+            "headers": [
+                {
+                    "key": "X-Content-Type-Options",
+                    "value": "nosniff"
+                },
+                {
+                    "key": "X-Frame-Options",
+                    "value": "DENY"
+                },
+                {
+                    "key": "X-XSS-Protection",
+                    "value": "1; mode=block"
+                },
+                {
+                    "key": "Referrer-Policy",
+                    "value": "strict-origin-when-cross-origin"
+                }
+            ]
+        },
         {
             "source": "/sw.js",
             "headers": [
@@ -51,9 +75,7 @@
     ],
     "git": {
         "deploymentEnabled": {
-            "main": true,
-            "develop": true,
-            "preview": true
+            "main": true
         }
     }
 }

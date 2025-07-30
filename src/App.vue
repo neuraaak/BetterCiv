@@ -17,6 +17,7 @@ import VuePlugin from '@stagewise-plugins/vue';
 // VARIABLES
 // ##############
 const store = translationStore();
+
 //
 const civ_data = ref([]);
 const civ_tiers_and_tags = ref([

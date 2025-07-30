@@ -5,7 +5,11 @@
         @click="toggleSelected"
     >
         <template #header>
-            <img alt="user header" :src="imagePath" />
+            <LazyImageComponent 
+                :src="imagePath" 
+                alt="user header"
+                threshold="0.1"
+            />
         </template>
 
         <template #title>
@@ -33,10 +37,12 @@
                 id="leader"
                 class="bg-zinc-900 rounded-md mt-2 mx-2 px-2 pb-2 max-h-[3.75rem] min-h-[3.75rem] overflow-y-auto"
             >
-                <p
-                    v-html="civLeaderEffectWithIcons"
+                <TextWithIconsComponent
+                    :text="civ_leader_effect"
+                    :keywordIcons="keywordIcons"
+                    :language="store.lang"
                     class="font-sans font-light text-sm pl-1 py-1"
-                ></p>
+                />
             </div>
         </template>
 
@@ -66,8 +72,24 @@
 import { ref, watch, computed, onMounted } from 'vue';
 import { translationStore } from '../../stores/index';
 import Card from 'primevue/card';
-import CivTierComponent from './subcomponents/CivTierComponent.vue'; // cspell:ignore subcomponents
-import CivTagComponent from './subcomponents/CivTagComponent.vue'; // cspell:ignore subcomponents
+import { defineAsyncComponent } from 'vue';
+import LazyImageComponent from '../global/LazyImageComponent.vue';
+import TextWithIconsComponent from '../global/TextWithIconsComponent.vue';
+
+// Lazy loading des sous-composants
+const CivTierComponent = defineAsyncComponent({
+    loader: () => import('./subcomponents/CivTierComponent.vue'),
+    loadingComponent: () => import('../global/LoadingComponent.vue'),
+    delay: 100,
+    timeout: 2000
+});
+
+const CivTagComponent = defineAsyncComponent({
+    loader: () => import('./subcomponents/CivTagComponent.vue'),
+    loadingComponent: () => import('../global/LoadingComponent.vue'),
+    delay: 100,
+    timeout: 2000
+});
 
 // VARIABLES
 // ##############
@@ -105,28 +127,7 @@ const imagePath = computed(() => {
     return `/img/card-cover2.jpg`;
 });
 
-const civLeaderEffectWithIcons = computed(() => {
-    let text = props.civ_leader_effect?.replace(/\[.*?\]/g, '').trim();
 
-    keywordIcons.value.forEach(({ text: keyword, icon }) => {
-        const iconPath = icon;
-        let regex = null;
-        if (['ru', 'jp', 'kr', 'zh'].includes(store.lang)) {
-            regex = new RegExp(`${keyword}`, 'ui');
-        } else {
-            regex = new RegExp(`\\b${keyword}\\b`, 'gi');
-        }
-
-        if (text !== undefined) {
-            text = text.replace(
-                regex,
-                `<span class="keyword-icon translate-y-[0.2rem]" style="display: inline-flex; align-items: center; height: 20px;"><img src="${iconPath}" alt="${keyword}" style="display: inline; height: 16px; vertical-align: middle;">${keyword}</span>`
-            );
-        }
-    });
-
-    return text;
-});
 
 // WATCHER
 // ##############

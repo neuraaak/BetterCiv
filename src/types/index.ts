@@ -23,10 +23,29 @@ export interface Civilization {
     id: number;
     name: string;
     description?: string;
-    unique_units?: string[];
-    unique_buildings?: string[];
+    unique_units?: Array<{
+        name: string;
+        url: string;
+        icon?: string;
+    }>;
+    unique_buildings?: Array<{
+        name: string;
+        url: string;
+        icon?: string;
+    }>;
     tags_id?: number[];
     tier_id?: number;
+    leader: {
+        name: string;
+        icon: string;
+        trait: {
+            effect: string;
+        };
+    };
+    historical_info: Array<{
+        text: string;
+    }>;
+    icon?: string;
 }
 
 // Types for tier correspondence
