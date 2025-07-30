@@ -18,11 +18,11 @@
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "https://github.com/neuraaak/BetterCiv.git"
+        "url": "https://github.com/neuraaak/BetterCiv5.git"
     },
-    "homepage": "https://github.com/neuraaak/BetterCiv#readme",
+    "homepage": "https://github.com/neuraaak/BetterCiv5#readme",
     "bugs": {
-        "url": "https://github.com/neuraaak/BetterCiv/issues"
+        "url": "https://github.com/neuraaak/BetterCiv5/issues"
     },
     "scripts": {
         "dev": "vite --config config/vite.config.js",
