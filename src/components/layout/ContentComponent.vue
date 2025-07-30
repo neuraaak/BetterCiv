@@ -10,7 +10,7 @@
                 :id="filteredCivilisations[selectedCardIndex]?.id"
                 :name="filteredCivilisations[selectedCardIndex]?.name"
                 :civ_icon="filteredCivilisations[selectedCardIndex]?.icon"
-                :desc="filteredCivilisations[selectedCardIndex]?.historical_info[0]?.text"
+                :desc="filteredCivilisations[selectedCardIndex]?.historical_info?.[0]?.text || ''"
                 :tags_id="filteredCivilisations[selectedCardIndex]?.tags_id"
                 :tier_id="filteredCivilisations[selectedCardIndex]?.tier_id"
                 :civ_leader="filteredCivilisations[selectedCardIndex]?.leader.name"
@@ -57,7 +57,7 @@
                 :key="civ?.id"
                 :id="civ?.id"
                 :name="civ?.name"
-                :desc="civ?.historical_info[0].text"
+                :desc="civ?.historical_info?.[0]?.text || ''"
                 :tags_id="civ?.tags_id"
                 :tier_id="civ?.tier_id"
                 :civ_leader_effect="civ?.leader.trait.effect"
@@ -182,6 +182,10 @@
     }
 
     function navigateCards(event) {
+        if (filteredCivilisations.value.length === 0) {
+            return; // No cards to navigate
+        }
+
         if (event.key === 'ArrowRight') {
             // Go to next card
             const nextIndex =

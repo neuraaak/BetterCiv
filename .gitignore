@@ -143,6 +143,11 @@ test-results/
 coverage/
 .nyc_output/
 
+# Fichiers de test et configuration
+tests/**/*.tmp
+tests/**/*.log
+.vitest/
+
 # Logs
 *.log
 *.log.*

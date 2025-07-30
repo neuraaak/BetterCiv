@@ -326,6 +326,9 @@
         const units = props.civ_units || []; // Ensure array exists
         const unitFetches = units.map(async unit => {
             try {
+                if (!unit.url) {
+                    return { ...unit, icon: undefined };
+                }
                 const response = await fetch(unit.url.replace('/en/', `/${store.getLanguage}/`));
                 if (!response.ok) throw new Error('Network response was not ok');
                 const data = await response.json();
@@ -340,6 +343,9 @@
         const buildings = props.civ_building || []; // Ensure array exists
         const buildingFetches = buildings.map(async building => {
             try {
+                if (!building.url) {
+                    return { ...building, icon: undefined };
+                }
                 const response = await fetch(
                     building.url.replace('/en/', `/${store.getLanguage}/`)
                 );

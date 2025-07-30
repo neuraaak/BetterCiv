@@ -78,31 +78,69 @@ const civilizations = store.civilizations;
 - **✅ Search System** - Advanced search with autocomplete functionality
 - **✅ Code Quality** - ESLint, Prettier, and cSpell configuration
 
-## 🧪 **Tests**
+## 🧪 Tests
 
-### **Quick Execution**
+Le projet utilise **Vitest** pour les tests unitaires avec une couverture complète des composants et de la logique métier.
 
-```bash
-# Quick verification
-npm run test
+### Structure des tests
 
-# Tests with coverage
-npm run test:coverage
-
-# Linting check
-npm run lint
+```
+tests/
+├── setup.ts                    # Configuration globale des tests
+├── unit/                       # Tests unitaires
+│   ├── types.test.ts          # Tests des types TypeScript
+│   ├── stores.test.ts         # Tests du store Pinia
+│   ├── main.test.ts           # Tests du point d'entrée
+│   └── components/            # Tests des composants
+│       ├── SelectLanguageComponent.test.ts
+│       └── SearchInputComponent.test.ts
+├── integration/               # Tests d'intégration
+│   └── app.test.ts           # Tests de l'application complète
+└── utils/                     # Utilitaires de test
+    └── test-helpers.ts       # Helpers et mocks
 ```
 
-### **Test Documentation**
+### Commandes de test
 
-- **[🚀 Quick Start Guide](docs/tests/QUICK_START.md)** - Quick verification
-- **[📖 Complete Documentation](docs/tests/README.md)** - Detailed guide
+```bash
+# Lancer les tests en mode watch
+yarn test
 
-### **Statistics**
+# Lancer les tests avec interface graphique
+yarn test:ui
 
-- **Total** : Configuration ready for testing
-- **Coverage** : To be implemented
-- **Status** : 🟡 **IN DEVELOPMENT**
+# Exécuter tous les tests une fois
+yarn test:run
+
+# Générer un rapport de couverture
+yarn test:coverage
+
+# Lancer les tests en mode watch
+yarn test:watch
+```
+
+### Couverture des tests
+
+Les tests couvrent :
+
+- ✅ **Types TypeScript** : Validation de la structure des interfaces
+- ✅ **Store Pinia** : Getters, actions et état
+- ✅ **Composants Vue** : Rendu, props, événements, interactions utilisateur
+- ✅ **Intégration** : Fonctionnement global de l'application
+- ✅ **Utilitaires** : Helpers et mocks pour faciliter les tests
+
+### Exécution des tests
+
+```bash
+# Tests unitaires uniquement
+yarn test:run --reporter=verbose
+
+# Tests avec couverture détaillée
+yarn test:coverage --reporter=html
+
+# Tests spécifiques
+yarn test:run stores.test.ts
+```
 
 ## 🔧 **Development**
 

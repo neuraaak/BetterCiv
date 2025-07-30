@@ -6,8 +6,8 @@
             <input
                 type="checkbox"
                 name="checkbox"
-                v-model="opt.checked"
-                @change="updateSelectedOptions"
+                :checked="opt.checked"
+                @change="handleCheckboxChange(opt)"
             />
             <span
                 class="name flex rounded-md text-sm px-2 py-1"
@@ -38,6 +38,10 @@
             type: String,
             required: true,
         },
+        multiple: {
+            type: Boolean,
+            default: true,
+        },
     });
 
     const store = translationStore();
@@ -46,6 +50,11 @@
 
     // FUNCTIONS
     // ##############
+    function handleCheckboxChange(option) {
+        option.checked = !option.checked;
+        updateSelectedOptions();
+    }
+
     function updateSelectedOptions() {
         const selectedOptions = props.options.filter(opt => opt.checked);
         emit('update:selectedOptions', selectedOptions);
