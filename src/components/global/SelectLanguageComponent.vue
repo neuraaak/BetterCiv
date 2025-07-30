@@ -1,9 +1,9 @@
 <template>
-    <div class="bg-zinc-200 border-zinc-200 text-zinc-800 rounded-sm flex items-center w-16">
+    <div class="bg-zinc-200 border-zinc-200 text-zinc-800 rounded-sm flex items-center w-20">
         <select
             v-model="selectedLang"
             @change="updateLanguage"
-            class="px-2 py-1 rounded-sm bg-zinc-200 border-zinc-200 text-zinc-800"
+            class="px-2 py-1 rounded-sm bg-zinc-200 border-zinc-200 text-zinc-800 w-full"
         >
             <option
                 v-for="option in options"
@@ -11,7 +11,7 @@
                 :value="option.lang"
                 class="bg-gray-800 text-white"
             >
-                {{ option.value }}
+                {{ option.label }} {{ option.flag }}
             </option>
         </select>
     </div>
@@ -20,7 +20,7 @@
 <script setup>
     /**
      * Select Language Component - Language selector dropdown
-     * Allows users to change the application language
+     * Allows users to change the application language with flag display
      */
     // IMPORT
     // ##############
@@ -31,18 +31,18 @@
     // ##############
     const store = translationStore();
 
-    // Available languages with flags
+    // Available languages with flags and labels
     const options = ref([
-        { value: '🇺🇸', lang: 'en' },
-        { value: '🇩🇪', lang: 'de' },
-        { value: '🇪🇸', lang: 'es' },
-        { value: '🇫🇷', lang: 'fr' },
-        { value: '🇮🇹', lang: 'it' },
-        { value: '🇯🇵', lang: 'jp' },
-        { value: '🇰🇷', lang: 'kr' },
-        { value: '🇵🇱', lang: 'pl' },
-        { value: '🇷🇺', lang: 'ru' },
-        { value: '🇨🇳', lang: 'zh' },
+        { label: 'EN', flag: '🇺🇸', lang: 'en' },
+        { label: 'DE', flag: '🇩🇪', lang: 'de' },
+        { label: 'ES', flag: '🇪🇸', lang: 'es' },
+        { label: 'FR', flag: '🇫🇷', lang: 'fr' },
+        { label: 'IT', flag: '🇮🇹', lang: 'it' },
+        { label: 'JP', flag: '🇯🇵', lang: 'jp' },
+        { label: 'KR', flag: '🇰🇷', lang: 'kr' },
+        { label: 'PL', flag: '🇵🇱', lang: 'pl' },
+        { label: 'RU', flag: '🇷🇺', lang: 'ru' },
+        { label: 'ZH', flag: '🇨🇳', lang: 'zh' },
     ]);
 
     // Current selected language
@@ -66,5 +66,11 @@
     .flag-text {
         margin-left: 10px;
     }
+
+    /* Custom select styling for better flag display */
+    select option {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
 </style>
-../../stores/index

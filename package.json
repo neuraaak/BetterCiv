@@ -63,7 +63,7 @@
     },
     "dependencies": {
         "@stagewise-plugins/vue": "^0.6.2",
-        "@stagewise/toolbar": "0.6.2",
+        "@stagewise/toolbar": "^0.6.2",
         "@stagewise/toolbar-vue": "^0.6.2",
         "@tailwindcss/postcss": "^4.1.11",
         "autoprefixer": "^10.4.21",

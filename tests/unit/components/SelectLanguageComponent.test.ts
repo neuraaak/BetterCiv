@@ -35,7 +35,18 @@ describe('SelectLanguageComponent', () => {
             const wrapper = mount(SelectLanguageComponent);
             const options = wrapper.findAll('option');
 
-            const expectedValues = ['🇺🇸', '🇩🇪', '🇪🇸', '🇫🇷', '🇮🇹', '🇯🇵', '🇰🇷', '🇵🇱', '🇷🇺', '🇨🇳'];
+            const expectedValues = [
+                'EN 🇺🇸',
+                'DE 🇩🇪',
+                'ES 🇪🇸',
+                'FR 🇫🇷',
+                'IT 🇮🇹',
+                'JP 🇯🇵',
+                'KR 🇰🇷',
+                'PL 🇵🇱',
+                'RU 🇷🇺',
+                'ZH 🇨🇳',
+            ];
             expectedValues.forEach((value, index) => {
                 expect(options[index].text()).toBe(value);
             });
@@ -48,8 +59,8 @@ describe('SelectLanguageComponent', () => {
             const vm = wrapper.vm as any;
 
             expect(vm.options).toHaveLength(10);
-            expect(vm.options[0]).toEqual({ value: '🇺🇸', lang: 'en' });
-            expect(vm.options[9]).toEqual({ value: '🇨🇳', lang: 'zh' });
+            expect(vm.options[0]).toEqual({ label: 'EN', flag: '🇺🇸', lang: 'en' });
+            expect(vm.options[9]).toEqual({ label: 'ZH', flag: '🇨🇳', lang: 'zh' });
         });
 
         it('should have default selected language', () => {
@@ -112,7 +123,7 @@ describe('SelectLanguageComponent', () => {
             expect(wrapper.find('.rounded-sm').exists()).toBe(true);
             expect(wrapper.find('.flex').exists()).toBe(true);
             expect(wrapper.find('.items-center').exists()).toBe(true);
-            expect(wrapper.find('.w-16').exists()).toBe(true);
+            expect(wrapper.find('.w-20').exists()).toBe(true);
         });
 
         it('should have correct select element styling', () => {
@@ -125,6 +136,7 @@ describe('SelectLanguageComponent', () => {
             expect(select.classes()).toContain('bg-zinc-200');
             expect(select.classes()).toContain('border-zinc-200');
             expect(select.classes()).toContain('text-zinc-800');
+            expect(select.classes()).toContain('w-full');
         });
     });
 });

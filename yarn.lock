@@ -1079,7 +1079,7 @@
   dependencies:
     "@stagewise/toolbar" "0.6.2"
 
-"@stagewise/toolbar@0.6.2":
+"@stagewise/toolbar@0.6.2", "@stagewise/toolbar@^0.6.2":
   version "0.6.2"
   resolved "https://registry.yarnpkg.com/@stagewise/toolbar/-/toolbar-0.6.2.tgz#65c2deda0c565e4b229e7a91ec57eac7a5f7dd28"
   integrity sha512-WN7PWaOT6YQKjJYL4/85V5UU0eZEws+/UBT/J4wJOEbFxoluLuchqh7xVTmUZTtw0q0xpzlgX8Vb0kAZf/pjmw==

@@ -1,7 +1,8 @@
 <template>
     <HeaderComponent class="fixed" />
     <ContentComponent :civilisations="civ_data" />
-    <StagewiseToolbar :config="{ plugins: [VuePlugin] }" />
+    <!-- Stagewise Toolbar - Configuration selon la documentation officielle -->
+    <StagewiseToolbar v-if="isDevelopment" :config="stagewiseConfig" />
 </template>
 
 <script setup>
@@ -17,6 +18,15 @@
     // VARIABLES
     // ##############
     const store = translationStore();
+
+    // Vérification du mode développement
+    const isDevelopment = import.meta.env.DEV;
+
+    // Configuration stagewise selon la documentation officielle
+    const stagewiseConfig = ref({
+        plugins: [VuePlugin],
+    });
+
     //
     const civ_data = ref([]);
     const civ_tiers_and_tags = ref([
@@ -90,6 +100,11 @@
         document.documentElement.lang = 'fr';
         window.addEventListener('mousemove', movingBackground);
         fetchCivilizations();
+
+        // Debug: Vérifier si stagewise est chargé
+        console.log('Stagewise config:', stagewiseConfig.value);
+        console.log('VuePlugin:', VuePlugin);
+        console.log('StagewiseToolbar component:', StagewiseToolbar);
     });
 
     onBeforeUnmount(() => {
