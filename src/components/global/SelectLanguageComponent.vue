@@ -5,7 +5,12 @@
             @change="updateLanguage"
             class="px-2 py-1 rounded-sm bg-zinc-200 border-zinc-200 text-zinc-800"
         >
-            <option v-for="option in options" :key="option.value" :value="option.lang">
+            <option
+                v-for="option in options"
+                :key="option.value"
+                :value="option.lang"
+                class="bg-gray-800 text-white"
+            >
                 {{ option.value }}
             </option>
         </select>
@@ -26,18 +31,18 @@
     // ##############
     const store = translationStore();
 
-    // Available languages
+    // Available languages with flags
     const options = ref([
-        { value: 'US', lang: 'en' },
-        { value: 'DE', lang: 'de' },
-        { value: 'ES', lang: 'es' },
-        { value: 'FR', lang: 'fr' },
-        { value: 'IT', lang: 'it' },
-        { value: 'JP', lang: 'jp' },
-        { value: 'KR', lang: 'kr' },
-        { value: 'PL', lang: 'pl' },
-        { value: 'RU', lang: 'ru' },
-        { value: 'CN', lang: 'zh' },
+        { value: '🇺🇸 US', lang: 'en' },
+        { value: '🇩🇪 DE', lang: 'de' },
+        { value: '🇪🇸 ES', lang: 'es' },
+        { value: '🇫🇷 FR', lang: 'fr' },
+        { value: '🇮🇹 IT', lang: 'it' },
+        { value: '🇯🇵 JP', lang: 'jp' },
+        { value: '🇰🇷 KR', lang: 'kr' },
+        { value: '🇵🇱 PL', lang: 'pl' },
+        { value: '🇷🇺 RU', lang: 'ru' },
+        { value: '🇨🇳 CN', lang: 'zh' },
     ]);
 
     // Current selected language
