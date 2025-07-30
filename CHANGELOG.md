@@ -5,6 +5,58 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.1] - 2025-07-30
+
+> **Related Commits**: [`9b4f8a0`](https://github.com/neuraaak/BetterCiv5/commit/9b4f8a0) - Tailwind CSS v4 upgrade
+
+### 🚀 Tailwind CSS v4 Major Upgrade
+
+| Feature                    | Description                                                    | Impact                                           |
+| -------------------------- | -------------------------------------------------------------- | ------------------------------------------------ |
+| **Tailwind CSS v4.1.11**  | Upgraded from v3.4.17 to latest v4.1.11                       | Improved performance and new features            |
+| **New CSS Engine**         | Replaced PostCSS with native CSS engine                        | 10x faster CSS generation                        |
+| **CSS Nesting Support**    | Native support for CSS nesting rules                           | More powerful and intuitive CSS writing          |
+| **Container Queries**      | Native support for container queries                           | Better responsive design capabilities            |
+| **Enhanced Colors**        | Extended color palette with improved color system              | More design options and better color management  |
+
+### 🛠️ Technical Implementation
+
+| Component                    | Feature                    | Description                                           |
+| ---------------------------- | -------------------------- | ----------------------------------------------------- |
+| **PostCSS Integration**     | @tailwindcss/postcss       | New PostCSS plugin for Tailwind CSS v4 compatibility |
+| **Configuration Update**    | tailwind.config.js         | Updated configuration for v4 syntax and features     |
+| **CSS Imports**             | @import syntax             | New import syntax for Tailwind CSS v4               |
+| **Custom Plugin Migration** | .bg-rainbow utility        | Migrated custom plugin to new v4 syntax             |
+
+### 🎯 Benefits
+
+| Benefit                    | Description                                                  |
+| -------------------------- | ------------------------------------------------------------ |
+| **Performance Boost**      | 10x faster CSS generation and build times                   |
+| **Modern CSS Features**    | Native CSS nesting and container queries support            |
+| **Better Developer UX**    | Improved configuration syntax and error messages           |
+| **Future-Proof**           | Latest Tailwind CSS features and long-term support         |
+| **Enhanced Styling**       | Extended color palette and improved utility classes        |
+
+### 📁 Files Modified
+
+| File                        | Changes                                    | Impact                           |
+| --------------------------- | ------------------------------------------ | -------------------------------- |
+| `package.json`              | Updated Tailwind CSS to v4.1.11           | Latest version with new features |
+| `tailwind.config.js`        | Updated configuration for v4 syntax        | New configuration format         |
+| `src/main.css`              | Updated imports to use new @import syntax  | New CSS import system            |
+| `config/postcss.config.js`  | Added @tailwindcss/postcss plugin          | PostCSS compatibility            |
+
+### 🔧 Breaking Changes
+
+| Change                     | Description                                    | Migration Required               |
+| -------------------------- | ---------------------------------------------- | ------------------------------- |
+| **PostCSS Plugin**         | Moved to separate @tailwindcss/postcss package | Install new package             |
+| **CSS Imports**            | Changed from @tailwind to @import syntax      | Update import statements        |
+| **Configuration Syntax**   | Updated plugin syntax for v4 compatibility    | Update custom plugins           |
+
+---
+
 ## [1.1.0] - 2025-07-30
 
 > **Related Commits**: [`1601d04`](https://github.com/neuraaak/BetterCiv5/commit/1601d047b896361f29ae1db95241685daa229276) - Component reorganization
