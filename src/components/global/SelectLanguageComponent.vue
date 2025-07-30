@@ -33,16 +33,16 @@
 
     // Available languages with flags
     const options = ref([
-        { value: '🇺🇸 US', lang: 'en' },
-        { value: '🇩🇪 DE', lang: 'de' },
-        { value: '🇪🇸 ES', lang: 'es' },
-        { value: '🇫🇷 FR', lang: 'fr' },
-        { value: '🇮🇹 IT', lang: 'it' },
-        { value: '🇯🇵 JP', lang: 'jp' },
-        { value: '🇰🇷 KR', lang: 'kr' },
-        { value: '🇵🇱 PL', lang: 'pl' },
-        { value: '🇷🇺 RU', lang: 'ru' },
-        { value: '🇨🇳 CN', lang: 'zh' },
+        { value: '🇺🇸', lang: 'en' },
+        { value: '🇩🇪', lang: 'de' },
+        { value: '🇪🇸', lang: 'es' },
+        { value: '🇫🇷', lang: 'fr' },
+        { value: '🇮🇹', lang: 'it' },
+        { value: '🇯🇵', lang: 'jp' },
+        { value: '🇰🇷', lang: 'kr' },
+        { value: '🇵🇱', lang: 'pl' },
+        { value: '🇷🇺', lang: 'ru' },
+        { value: '🇨🇳', lang: 'zh' },
     ]);
 
     // Current selected language

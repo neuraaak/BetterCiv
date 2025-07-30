@@ -31,11 +31,11 @@ describe('SelectLanguageComponent', () => {
             });
         });
 
-        it('should display correct language codes', () => {
+        it('should display correct language codes with flags', () => {
             const wrapper = mount(SelectLanguageComponent);
             const options = wrapper.findAll('option');
 
-            const expectedValues = ['US', 'DE', 'ES', 'FR', 'IT', 'JP', 'KR', 'PL', 'RU', 'CN'];
+            const expectedValues = ['🇺🇸', '🇩🇪', '🇪🇸', '🇫🇷', '🇮🇹', '🇯🇵', '🇰🇷', '🇵🇱', '🇷🇺', '🇨🇳'];
             expectedValues.forEach((value, index) => {
                 expect(options[index].text()).toBe(value);
             });
@@ -43,13 +43,13 @@ describe('SelectLanguageComponent', () => {
     });
 
     describe('Data', () => {
-        it('should have correct language options', () => {
+        it('should have correct language options with flags', () => {
             const wrapper = mount(SelectLanguageComponent);
             const vm = wrapper.vm as any;
 
             expect(vm.options).toHaveLength(10);
-            expect(vm.options[0]).toEqual({ value: 'US', lang: 'en' });
-            expect(vm.options[9]).toEqual({ value: 'CN', lang: 'zh' });
+            expect(vm.options[0]).toEqual({ value: '🇺🇸', lang: 'en' });
+            expect(vm.options[9]).toEqual({ value: '🇨🇳', lang: 'zh' });
         });
 
         it('should have default selected language', () => {
