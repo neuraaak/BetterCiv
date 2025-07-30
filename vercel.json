@@ -11,6 +11,21 @@
     ],
     "routes": [
         {
+            "src": "/sw.js",
+            "dest": "/sw.js",
+            "headers": {
+                "Cache-Control": "public, max-age=0, must-revalidate",
+                "Service-Worker-Allowed": "/"
+            }
+        },
+        {
+            "src": "/workbox-*.js",
+            "dest": "/workbox-*.js",
+            "headers": {
+                "Cache-Control": "public, max-age=31536000, immutable"
+            }
+        },
+        {
             "src": "/(.*)",
             "dest": "/index.html"
         }
@@ -18,5 +33,20 @@
     "functions": {},
     "env": {
         "NODE_ENV": "production"
-    }
+    },
+    "headers": [
+        {
+            "source": "/sw.js",
+            "headers": [
+                {
+                    "key": "Cache-Control",
+                    "value": "public, max-age=0, must-revalidate"
+                },
+                {
+                    "key": "Service-Worker-Allowed",
+                    "value": "/"
+                }
+            ]
+        }
+    ]
 }

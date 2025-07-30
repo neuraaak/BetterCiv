@@ -64,7 +64,9 @@
         "eslint-plugin-vue": "^10.3.0",
         "prettier": "^3.6.2",
         "typescript": "^5.8.3",
-        "vite": "^5.4.19"
+        "vite": "^5.4.19",
+        "vite-plugin-pwa": "^1.0.2",
+        "workbox-window": "^7.3.0"
     },
     "engines": {
         "node": ">=16.0.0",
